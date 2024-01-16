@@ -6,6 +6,14 @@
 
 \usepackage{amssymb}
 
+\newcommand{\checkbox}[1]{%
+  % From: https://tex.stackexchange.com/a/568208
+  \ifnum#1=1
+    \makebox[0pt][l]{\raisebox{0.15ex}{\hspace{0.1em}$\checkmark$}}%
+  \fi
+  $\square$%
+}
+
 \oddsidemargin=0mm \textwidth=160mm
 \topmargin=0mm \textheight=220mm
 
@@ -46,14 +54,14 @@
 {\bf Nature of the contribution:} (Tick all that apply)\vspace{-5mm}
 \begin{center}
 \begin{tabular}[2]{cp{0.44\textwidth}|cp{0.44\textwidth}}
-$\Box$ & Development of new theory, concept, or algorithm with a
+\checkbox{0} & Development of new theory, concept, or algorithm with a
   significant impact &
-$\Box$ & Enhancement or modification of known theory or concept \\[3mm]
-$\Box$ & Experimental work with a significant impact to theory/practice &
-$\Box$ & Some experiments to validate the concepts\\[3mm]
-$\Box$ & Building a part/whole of a system with a significant
+\checkbox{0} & Enhancement or modification of known theory or concept \\[3mm]
+\checkbox{0} & Experimental work with a significant impact to theory/practice &
+\checkbox{0} & Some experiments to validate the concepts\\[3mm]
+\checkbox{0} & Building a part/whole of a system with a significant
   functionality or enhancement in performance/functionality. &
-$\Box$ & Enhancements to parts of an existing system \\
+\checkbox{0} & Enhancements to parts of an existing system \\
 \end{tabular}
 \end{center}
 
