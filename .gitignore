@@ -1,0 +1,28 @@
+# Ignore VSCode settings
+.vscode/settings.json
+
+# -- Ignore LaTeX files --
+# Ref: https://tex.stackexchange.com/questions/7770/file-extensions-related-to-latex-etc
+# Ref: https://tex.stackexchange.com/questions/118489/what-exactly-is-synctex
+# Compilation files
+*.aux
+*.fdb_latexmk
+*.fls
+*.toc
+*.lof
+*.lol
+# Logging files
+*.log
+# Synchronization file
+*.synctex.gz
+*.synctex
+*.synctex(busy)
+# Result files
+*.out
+*.pdf
+# XML files generated
+*.run.xml
+# Bibliography
+*.bbl
+*.bcf
+*.blg
