@@ -1,0 +1,108 @@
+%  $Description: Thesis
+%  $Author: xxx $
+%  $Date: xxx  $
+%  $Revision: 0.0 $
+
+\documentclass[11pt]{book}
+\usepackage{iiit_thesis}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{algorithm2e}
+\graphicspath{{images/}{./}} % To include images in other directories
+
+\long\def\symbolfootnote[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
+\renewcommand{\baselinestretch}{1.2}
+\onecolumn
+%--------------------------------------------------------
+
+\begin{document}
+\pagenumbering{roman}
+
+%% TITLE PAGE
+\input{titlePage.tex}
+
+%% COPYRIGHT PAGE
+\newpage
+\thispagestyle{empty}
+\renewcommand{\thesisdedication}{{\large Copyright \copyright~~NAME, YEAR\\}{\large All Rights Reserved\\}}
+\thesisdedicationpage
+
+%% CERTIFICATE PAGE
+\input{certificate.tex}
+
+%%% DEDICATION PAGE
+\newpage
+\thispagestyle{empty}
+\renewcommand{\thesisdedication}{\large To SOMEONE}
+\thesisdedicationpage
+
+\mastersthesis
+\renewcommand{\baselinestretch}{1.5}
+
+% ACKNOWLEDGEMENTS PAGE
+\chapter*{Acknowledgments}
+\label{ch:ack}
+\input{acknowledgements.tex}
+
+%% ABSTRACT PAGE
+\chapter*{Abstract}
+\label{ch:abstract}
+\input{abstract.tex}
+
+\tableofcontents
+\listoffigures
+\listoftables
+%--------------------------------------------------------
+
+\chapter{Introduction}
+\label{ch:intro}
+\input{introduction.tex}
+
+%--------------------------------------------------------
+
+\chapter{Chapter Name}
+\label{ch:chap2}
+\input{chapter2.tex}
+
+%--------------------------------------------------------
+
+\chapter{Chapter Name}
+\label{ch:chap3}
+\input{chapter3.tex}
+
+%--------------------------------------------------------
+
+\chapter{Chapter Name}
+\label{ch:chap4}
+\input{chapter4.tex}
+
+%--------------------------------------------------------
+\chapter{Conclusions}
+\label{ch:conc}
+\input{conclusion.tex}
+
+%--------------------------------------------------------
+%%% Optional appendix
+%\appendix
+%\chapter{}
+%\label{}
+
+%--------------------------------------------------------
+% Recommended 'Related Publication'
+\chapter*{Related Publications}
+\label{ch:relatedPubs}
+\input{relatedPapers.tex}
+
+%--------------------------------------------------------
+
+\bibliographystyle{latex8}
+%\bibliography{References,Introduction/References} % To include one or more reference.bib files
+\bibliography{sampleBib} 
+
+\end{document}

@@ -1,0 +1,993 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% File: iiit_thesis.sty, version 1.1, Jun 2005
+%%% ============================================
+%%% Based on uiuc_thesis.sty. Whose copyright notice is below.
+%%% All Modifications Copyright (c) 2005 by Karteek Alahari. All rights reserved.
+%%% This file is free and can be modified or distributed as long as
+%%% you meet the following conditions:
+%%%
+%%% (1) This copyright notice is kept intact on all modified copies.
+%%% (2) If you modify this file, you MUST NOT use the original file name.
+%%%
+%%% CHANGES
+%%% =======
+%%% In makechapterhead: changed {\thechapter} -> {\it \thechapter}
+%%%
+%%% Removed CAPS in the following:
+%%% \renewcommand\contentsname{Contents}
+%%% \renewcommand\listfigurename{List of Figures}
+%%% \renewcommand\listtablename{List of Tables}
+%%% \renewcommand\bibname{Bibliography}
+%%% \renewcommand\indexname{Index}
+%%% \renewcommand\figurename{Figure}
+%%% \renewcommand\tablename{Table}
+%%% 
+%%% Italicizing Chapter:
+%%% \renewcommand\chaptername{{\it Chapter}}
+%%%
+%%% Changing the default contents
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% File: uiuc_thesis.sty, version 1.1, Nov 1995
+%%% ===========================================
+%%% Based on utthesis.sty.  Whose copyright notice is below.
+%%% All Modifications Copyright (c) 1994 by Fred Geiger.  All rights reserved.
+%%% This file is free and can be modified or distributed as long as
+%%% you meet the following conditions:
+%%%
+%%% (1) This copyright notice is kept intact on all modified copies.
+%%% (2) If you modify this file, you MUST NOT use the original file name.
+%%%
+%%% CHANGES
+%%% ==========
+%%% Dec 1994  Fred Geiger
+%%%     Adjusted spacing and margins to meet UIUC thesis requirements.
+%%%     Included modified Captions routine to correct Figure and Table Labels
+%%%     Modified Toc and Lof and Lot to have dots seperate col and page nums.
+%%%     Copied the spacing params from old uiucthesis.sty for title page.
+%%%     Fixed copyright page to match uiuc thesis requirements
+%%%     Added \thesistitlepageauthor to allow all caps name for title page
+%%%     Changed some of the defaults to match uiuc things (school etc)
+%%%     Changed toc lof lot so that all are single spaced between 
+%%%         enteries in a chapter with double between chapters
+%%%     Changed headings for many of the catagories to all caps.
+%%%     Bug Fixes - 11/95 Kevin Nickels
+%%%      Fixed spacing on Copywright page
+%%%      CHAPTER in TOC should be Chapter
+%%% Dec 1995  Sal Mazzola
+%%%     Modified chapter command to correctly show appendices in 
+%%%     table of contents.
+%%%
+%%% *** Note:  Changes still need to be made to addcontentsline
+%%%            to indent sections and subsections correctly.
+%%%            (search for ADDCONTENTSLINE in this file)
+%%%            Workaround is to edit .toc file directly changing
+%%%            all section and subsection to subsection and subsubsection,
+%%%            respectively, for appendix sections.
+%%%     Example:
+%%%     was ->  \protect \contentsline {section}{\protect \numberline {D.1} ...
+%%%     changed to ->  \protect \contentsline {subsection}{\protect \numberline {D.1} ...
+%%%     
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% File: utthesis.sty, version 1.0, April 1994
+%%% ===========================================
+%%% Copyright (c) 1994 by Dinesh Das.  All rights reserved.
+%%% This file is free and can be modified or distributed as long as
+%%% you meet the following conditions:
+%%%
+%%% (1) This copyright notice is kept intact on all modified copies.
+%%% (2) If you modify this file, you MUST NOT use the original file name.
+%%%
+%%% This file defines macros used for preparing theses for
+%%% The University of Texas at Austin.  It has been tested with LaTeX2e.
+%%% I do NOT guarantee that it will meet all requirements of the
+%%% Graduate School; however, if you find that something violates the
+%%% specifications, please send me email at <ddas@cs.utexas.edu> and
+%%% I will try to fix it.
+%%%
+%%% Usage:
+%%% ======
+%%%
+%%% To use this file with LaTeX2e, make sure your TEXINPUTS environment
+%%% variable contains the directory in which this file is located.
+%%% Include this file as a package in the preamble:
+%%%
+%%% \documentclass[...]{report}
+%%% \usepackage{utthesis}
+%%%
+%%% On non-UNIX systems, there might be different environment variables
+%%% that might need to be set.  I know nothing about such machines,
+%%% however; consult your local guru for details.
+%%%
+%%% To use with LaTeX, set your TEXINPUTS variable as above, and include
+%%% this file as a documentstyle option:
+%%%
+%%% \documentstyle[...,utthesis,...]{report}
+%%%
+%%% Also, MAKE SURE you uncomment the lines indicated below. 
+%%% NOTE: This file DOESN'T work with LaTeX yet; if you know how,
+%%% please send me email.
+%%% 
+%%% A template for a thesis is provided in the file "utthesis.doc", available
+%%% from the same place where you obtained this file.
+%%%
+%%% Command Names:
+%%% ==============
+%%%
+%%% ALL command names used in this file that are used to format the
+%%% thesis begin with "thesis" (e.g., \thesisauthor).  All of these
+%%% commands can be changed by the user using \renewcommand, e.g.,
+%%%
+%%% \renewcommand{\thesisauthor}{First M. Last}
+%%%
+%%% after loading the package (in LaTeX2e), or after the \documentstyle
+%%% command in LaTeX.
+%%%
+%%% The following is a list of all thesis-related variables used together
+%%% with their default values:
+%%%
+%%% \thesisauthor    %% Name of the author; defaults to "Ima Student".
+%%% \thesistitlepageauthor
+%%%                  %% Name to appear on title page; defaults to \thesisauthor
+%%% \thesismonth     %% Month of graduation; defaults to "May".
+%%% \thesisyear      %% Year of graduation; defaults to "1994".
+%%% \thesistitle     %% Full title of dissertation; defaults to "Title".
+%%% \thesistitletypesize
+%%%                  %% Typesize used to typeset \thesistitle; defaults
+%%%                  %% to \Large.
+%%% \thesisauthorpreviousdegrees
+%%% \previousschools
+%%%                  %% Previous degrees of author; defaults to "B.S., FOO U."
+%%% \thesissupervisor%% Name of thesis supervisor; defaults to "Supervisor"
+%%% \thesisauthoraddress
+%%%                  %% Permanent address of author; defaults to "USA"
+%%% \thesisapprovedby%% Approval of dissertation committee; defaults to
+%%%                  %% "Approved by".
+%%% \thesisapprovedbytypesize
+%%%                  %% Typesize user to typeset \thesisapprovedby; defaults
+%%%                  %% to \large.
+%%% \thesiscopyrightholder
+%%%                  %% Name of copyright holder; defaults to \thesisauthor.
+%%% \thesistypist    %% Name of thesis typist; defaults to "the author".
+%%% \thesistype      %% Type of thesis; defaults to "Dissertation".
+%%% \thesistypetypesize
+%%%                  %% Typesize used to typeset \thesistype; defaults to
+%%%                  %% \large.
+%%% \thesisdegree    %% Degree for which thesis is submitted; defaults to
+%%%                  %% "Doctor of Philosophy".
+%%% \thesisdepartment%% Department from which the thesis is submitted;
+%%%                  %%  defaults to "Electrical Engineering".
+%%% \thesisdegreetypesize
+%%%                  %% Typesize used to typeset \thesisdegree; defaults to
+%%%                  %% \large.
+%%% \thesisdegreeabbreviation
+%%%                  %% Abbreviation of \thesisdegree; defaults to "Ph.D.".
+%%% \thesiscommitteesize
+%%%                  %% Number of members in thesis committee; defaults to 5.
+%%% \thesiscommittee %% Name of thesis committee; defaults to
+%%%                  %% "Dissertation Committee:".
+%%% \thesiscommitteetypesize
+%%%                  %% Typesize used to typeset \thesiscommittee; defaults
+%%%                  %% to \large.
+%%% \thesisvitahead  %% Title of the vita page; defaults to "Vita".
+%%% \thesisvitaheadtypesize
+%%%                  %% Typesize used to typeset \thesisvitahead; unused.
+%%% \thesisacknowledgmenthead
+%%%                  %% Title of the acknowledgments page; defaults to
+%%%                  %% "ACKNOWLEDGMENTS".
+%%% \thesisacknowledgmentheadtypesize
+%%%                  %% Typesize used to typeset \thesisacknowledgmenthead;
+%%%                  %% unused.
+%%% \thesisacknowledgmentsigname
+%%%                  %% Signature on the acknowledgments page; defaults to
+%%%                  %% \thesisauthor.
+%%% \thesisacknowledgmentsignametypesize
+%%%                  %% Typesize used to typeset \thesisacknowledgmentsigname;
+%%%                  %% defaults to \large.
+%%% \thesisacknowledgmentsigplace
+%%%                  %% Address used on the acknowledgments page; defaults
+%%%                  %% to "The University of Illinois at Urbana-Champaign\\
+%%%                  %%  \thesismonth \thesisyear".
+%%% \thesisstudent   %% Name of author with previous degrees; defaults to
+%%%                  %% "\thesisauthor, \thesisauthorpreviousdegrees".
+%%% \thesisstudenttypesize
+%%%                  %% Typesize used to typeset \thesisstudent; defaults
+%%%                  %% to \large.
+%%% \thesisdedication%% Person or thing dedicated to; defaults to
+%%%
+%%% \tocspacing      %% spacing between enteries in the toc; default 1
+%%% \lofspacing      %% spacing between enteries in the lof; default 1
+%%% \lofchapskip     %% extra spacing between chapters in the lof; default 1
+%%% \lotspacing      %% spacing between enteries in the lot; default 1
+%%% \lotchapskip     %% extra spacing between chapters in the lot; default 1
+%%%
+%%%
+%%% Most of the default values will satisfy the Graduate School's
+%%% requirements; however, at a minimum, the user SHOULD redefine the
+%%% following commands:
+%%%
+%%% \thesisauthor
+%%% \thesismonth
+%%% \thesisyear
+%%% \thesistitle
+%%% \thesisauthorpreviousdegrees
+%%% \thesissupervisor
+%%% \thesisauthoraddress
+%%%
+%%% In addition to the above variables, the following commands are
+%%% provided to generate the optional sections of the thesis:
+%%%
+%%% \thesiscopyrightpage
+%%%                  %% Generates the copyright page.
+%%% \thesistitlepage %% Generates the title page.
+%%% \thesissignaturepage
+%%%                  %% Generates the signature page.
+%%% \thesisdedicationpage
+%%%                  %% Generates the dedication page.
+%%%
+%%% There are also a few environments to generate paragraph-like text:
+%%%
+%%% thesisacknowledgments
+%%%                  %% Text of acknowledgments.
+%%% thesisabstract   %% Text of abstract.
+%%% thesisauthorvita %% Text of author's vita.
+%%%
+%%% Bells and Whistles:
+%%% ===================
+%%%
+%%% The following commands are provided purely for playing around with.
+%%% They should be used in the document preamble (before \begin{document}).
+%%%
+%%% \thesisdraft     %% Prints a timestamp at the top of each page.  This
+%%%                  %% must be invoked in the document preamble (before
+%%%                  %% \begin{document}).
+%%% \leftchapter, \centerchapter, \rightchapter
+%%%                  %% These commands generate left-justified, \centered,
+%%%                  %% and right-justified chapter headings, respectively.
+%%% \singlespace, \oneandhalfspace, \doublespace
+%%%                  %% These define the line spacing to single-space,
+%%%                  %% one-and-one-half space, and double-space
+%%%                  %% respectively.  Note that the minimum spacing
+%%%                  %% required by the Graduate School is \oneandhalfspace,
+%%%                  %% but \singlespace is useful, e.g., when using
+%%%                  %% \thesisdraft.
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\typeout{*******************************************************************} 
+\typeout{** UIUC Thesis Style File, version 1.1, Nov 1995 by Fred Geiger    } 
+\typeout{** Based On UTTHESIS.STY,  Written by Dinesh Das                   }
+\typeout{**  Dept. of Computer Sciences,  The University of Texas at Austin }
+\typeout{*******************************************************************}
+
+\usepackage{ifthen}
+%%%
+%%% Set up page layout parameters.
+%%% Changed to match those of uiucthesis.sty 9/94 Fred Geiger
+%%%
+\setlength{\textheight}{8.7in}
+\setlength{\oddsidemargin}{0.125in}
+\setlength{\evensidemargin}{0.125in}
+\setlength{\textwidth}{6.25in}
+\setlength{\topmargin}{0.0in}
+%\setlength{\headheight}{0in}
+%\setlength{\headsep}{0in}
+%%\setlength{\footheight}{0.5in}
+\setlength{\footskip}{0.5in}
+\setlength{\parindent}{5mm}
+
+
+%%%
+%%% set penalties as high as possible to prohibit widows and orphans
+%%%
+\widowpenalty=10000
+\clubpenalty=10000
+
+%%% set so that subsubsections are numbered and put in toc
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+%%%
+%%% Set up titlepage kern and vspace
+%%% these are correct on my hp 4sii laserjet
+%%%
+\newcommand\@titlevspace{1.01875in}  % sets distance from top of page to title
+\newcommand\@titlekern{1.85in} % sets distance from title to rest of titlepage
+
+%%%
+%%% Change names to match UIUC requirements
+%%%
+%%%%%%% CHANGED by Karteek
+\renewcommand\contentsname{Contents}
+\renewcommand\listfigurename{List of Figures}  
+\renewcommand\listtablename{List of Tables}
+\renewcommand\bibname{Bibliography}
+\renewcommand\indexname{Index}   
+\renewcommand\figurename{Figure} 
+\renewcommand\tablename{Table}   
+\renewcommand\partname{PART}
+\renewcommand\chaptername{{\it Chapter}}
+\renewcommand\appendixname{{\it Appendix}}
+%\renewcommand\abstractname{ABSTRACT}
+%%%
+%%% Set up default values.
+%%%
+\newcommand{\@universityname}{International Institute of Information Technology}
+\newcommand{\@publicationno}{Publication No.\ \line(1,0){40} \\[10mm]}
+\newcommand{\thesisauthor}{Ima Student}
+\newcommand{\thesistitlepageauthor}{\thesisauthor}
+\newcommand{\thesismonth}{Dec}
+\newcommand{\thesisyear}{2005}
+\newcommand{\thesistitle}{Title}
+\newcommand{\thesistitletypesize}{\Large}
+\newcommand{\thesisauthorpreviousdegrees}{Degree}
+\newcommand{\previousschools}{B.S., FOO U}
+\newcommand{\thesissupervisor}{Supervisor}
+\newcommand{\thesisauthoraddress}{India}
+\newcommand{\thesisapprovedby}{Approved by}
+\newcommand{\thesisapprovedbytypesize}{\large}
+\newcommand{\thesiscopyrightholder}{\thesisauthor}
+\newcommand{\thesistypist}{the author}
+\newcommand{\thesistype}{Dissertation}
+\newcommand{\thesistypetypesize}{\large}
+\newcommand{\thesistypesize}{\large}
+\newcommand{\thesisdegree}{Doctor of Philosophy}
+\newcommand{\thesisdepartment}{Computer Science}
+\newcommand{\thesisdegreetypesize}{\large}
+\newcommand{\thesisdegreeabbreviation}{Ph.D.}
+\newcommand{\thesiscommitteesize}{5}
+\newcommand{\thesiscommittee}{Dissertation Committee:}
+\newcommand{\thesiscommitteetypesize}{\large}
+\newcommand{\thesisvitahead}{VITA}
+\newcommand{\thesisvitaheadtypesize}{\Large}
+\newcommand{\thesisacknowledgmenthead}{ACKNOWLEDGMENTS}
+\newcommand{\thesisacknowledgmentheadtypesize}{\Large}
+\newcommand{\thesisacknowledgmentsigname}{\thesisauthor}
+\newcommand{\thesisacknowledgmentsignametypesize}{\large}
+\newcommand{\thesisacknowledgmentsigplace}%
+    {{\slshape
+       \renewcommand{\arraystretch}{1.0}
+       \begin{tabular}{l}
+         \@universityname \\
+         \thesismonth\ \thesisyear
+       \end{tabular}}}
+\newcommand{\thesisdedication}{}
+\newcommand{\tocspacing}{1}
+\newcommand{\lofspacing}{1}
+\newcommand{\lofchapskip}{1}
+\newcommand{\lotspacing}{1}
+\newcommand{\lotchapskip}{1}
+
+
+%%%
+%%% Command for masters theses.  \phdthesis is provided for symmetry.
+%%%
+\newcommand{\mastersthesis}{
+    \renewcommand{\thesistype}{THESIS}
+    \renewcommand{\thesisdegree}{Master of Science}
+    \renewcommand{\thesisdegreeabbreviation}{M.S.}
+    \renewcommand{\thesiscommitteesize}{2}
+    \renewcommand{\thesiscommittee}{Supervising Committee:}}
+\newcommand{\phdthesis}{}
+
+%%%
+%%% Set up other commands.
+%%%
+\newcommand{\@defaultbaselinestretch}{1.5}
+\newcommand{\@base}[1]{\renewcommand{\baselinestretch}{#1}}
+\newcommand{\singlespace}{\renewcommand{\@defaultbaselinestretch}{1.1}}
+\newcommand{\oneandhalfspace}{\renewcommand{\@defaultbaselinestretch}{1.5}}
+\newcommand{\doublespace}{\renewcommand{\@defaultbaselinestretch}{1.7}}
+\newcommand{\@thesistitle}{\textbf{\thesistitletypesize \thesistitle}}
+%\newcommand{\@thesistitle}{\textbf{\thesistitletypesize  A Framework
+%for Designing a Low-Loss, Low-Delay Internet}}
+\newcommand{\@thesisapprovedby}%
+    {\textbf{\thesisapprovedbytypesize \thesisapprovedby}}
+\newcommand{\@thesistype}{\textbf{\thesistypetypesize \thesistype}}
+\newcommand{\@thesisdegree}{\textbf{\thesisdegreetypesize \thesisdegree}}
+\newcommand{\@thesisdegreeabbreviation}{\thesisdegreeabbreviation}
+\newcommand{\@thesiscommittee}%
+    {\textbf{\thesiscommitteetypesize \thesiscommittee}}
+\newcommand{\@thesisvitahead}{\thesisvitahead}
+\newcommand{\@thesisacknowledgmenthead}%
+    {\thesisacknowledgmenthead}
+\newcommand{\@thesisacknowledgmentsigname}%
+    {\textsc{\thesisacknowledgmentsignametypesize \thesisacknowledgmentsigname}}
+\newcommand{\@thesisacknowledgmentsigplace}{\thesisacknowledgmentsigplace}
+\newcommand{\@thesisstudent}{\textbf{\thesisstudenttypesize \thesisstudent}}
+
+%%%
+%%%   Taken from the old uiuc style file.
+%%%	Make chapter entries in the TOC have dotted leaders.
+%%%	Also, make certain page breaks don't occur after
+%%%	chapter headings in the TOC.
+%%%
+\def\l@chapter#1#2{\pagebreak[3] 
+\vskip 1.0em plus 1pt \@tempdima 1.5em
+\begingroup
+\parindent \z@ \rightskip \@pnumwidth%
+\parfillskip -\@pnumwidth%
+\leavevmode \advance\leftskip\@tempdima \hskip -\leftskip%
+\hyphenpenalty10000
+#1\nobreak\hfil
+%
+% following two lines stolen from \@dottedtocline in latex.tex
+%
+\nobreak\leaders\hbox{$\m@th \mkern \@dotsep mu.\mkern \@dotsep mu$}%
+\hfill \nobreak \hbox to\@pnumwidth{\hfil\rm #2}\par
+\endgroup\nopagebreak[4]}
+
+
+%%%
+%%% Command from report.cls, (c) LaTeX3 Project.
+%%% This is needed because UIUC requires the caption lables to be in bold
+%%% and not have a colon like in the original report style.
+%%%
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip 
+  \sbox\@tempboxa{\textbf{#1} #2}%
+  \ifdim \wd\@tempboxa >\hsize
+    \textbf{#1} #2\par
+  \else
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%  
+  \fi
+  \vskip\belowcaptionskip}
+
+%%%
+%%% Indent the first paragraph after a sectioning command.
+%%%
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+
+%%%
+%%% Set up default page numbering and line spacing.
+%%%
+\newcommand{\@textpagenumbering}{arabic}
+\newcommand{\@preamblepagenumbering}{roman}
+\newcommand{\@textpagestyle}{plain}
+\newcommand{\@preamblepagestyle}{plain}
+\pagenumbering{\@preamblepagenumbering}
+\@base{\@defaultbaselinestretch}
+
+\newcommand{\@chaptertype}{\chaptername}
+\newcommand{\@appendix}{0}
+
+
+%%%  ****************************************
+%%%  *           COPYRIGHT PAGE             *
+%%%  ****************************************
+%%%  borrowed from fuiucthesis.sty  
+%%% 
+
+\newcommand{\thesiscopyrightpage}{{
+ \@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
+ \else \newpage \fi\thispagestyle{empty}
+ \vrule width 0pt height 1pt depth 1pt %  some non-empty space for vfil 
+ \vfill
+ \centerline{\copyright\,Copyright by \thesiscopyrightholder,\,\thesisyear}
+ \vfill
+ \if@restonecol\twocolumn \else \newpage \fi}}
+
+
+%%% Much of this is from the original make title command from uiucthesis.sty. 
+%%% I didn't have the time or inclination to fix it.  It should really
+%%% support 2 line titles and stuff.  Feel free to impliment it if you
+%%% wish.
+%%%
+%%% Command to generate title page.
+%%%
+\newcommand{\thesistitlepage}{
+    \begingroup
+    \begin{spacing}{1}
+    \lineskip=0pt
+    \lineskiplimit=\maxdimen
+    \thispagestyle{empty}
+    %\vspace*{\1.01875in}%
+    \vspace*{\@titlevspace}%
+    \vtop to 0in{%
+    %the ``kern'' in the next line was -.25in. klm
+    \vtop to 0in{\begin{center}\kern -.125in
+    \begin{tabular}{c}\uppercase\expandafter{\thesistitle}
+    \end{tabular}\end{center}%
+    \vss}
+    %
+    % \vtop to 0in{\centerline{\uppercase\expandafter{\@title}}\vss}%
+    %
+    %  skip to ``by'' and author line; measurements w.r.t top line (2.25in)
+    %   
+    % The kern in the next line was 1.89 for a single-line title       
+    %\kern 1.85in%
+    \kern \@titlekern%
+    \vtop to 0in{\centerline{BY}%
+    \vskip \baselineskip
+    \centerline{\uppercase\expandafter{\thesistitlepageauthor}}%       
+    \vskip \baselineskip
+    \begin{center}\begin{tabular}{c}\previousschools\end{tabular}\end{center}%
+    \vss}\kern -1.75in%
+    %
+    %  Skip down from last item (which has baseline at the top) to     
+    %  thesis line.
+    %
+    % The kern in the next line was 4.4in for a single-line title      
+    \kern 4.25in%
+    \vtop to 0in{%
+    \centerline{THESIS}%
+    \vskip \baselineskip
+    \centerline{\strut Submitted in partial fulfillment of the
+    requirements}% 
+    \centerline{\strut for the degree of \thesisdegree \, in \thesisdepartment
+     }%
+    \centerline{\strut in the Graduate College of the}%
+    %\centerline{\strut Department of Electrical and Computer Engineering}
+    \centerline{\strut \@universityname, \thesisyear}%
+    \vss}\kern -4.25in%
+    %
+    % The kern in the next line was 6.91in for a single-line title    
+    \kern 6.75in%
+    \vtop to 0in{\centerline{Urbana, Illinois}\vss}%
+    \kern -6.75in\vss}
+    \end{spacing}
+    \endgroup
+    \newpage}
+
+%%%
+%%% Command to generate signature page.
+%%%
+\newcommand{\thesissignaturepage}{
+    \thispagestyle{empty}
+    \begin{spacing}{2}
+    \strut \vfill
+    \begin{center}
+      \@thesistitle
+    \end{center}
+    \vspace{50mm}
+    \mbox{} \hfill \begin{minipage}{72mm}
+                     \begin{spacing}{1}
+                     \@thesisapprovedby\hfill\mbox{} \\
+                     \@thesiscommittee \\[15mm]
+                     \end{spacing}
+                     \setlength{\unitlength}{1mm}
+                     \begin{picture}(67,70)(0,0)
+                       \multiput(0,70)(0,-10)
+                         {\thesiscommitteesize}{\line(1,0){67}}
+                     \end{picture}
+                   \end{minipage}
+    \vfill \strut
+    \end{spacing}
+    \newpage}
+
+%%%
+%%% Environment to generate abstract page.
+%%%
+  \newenvironment{thesisabstract}
+    {\chapter*{\abstractname
+         \@mkboth{\uppercase{\abstractname}}
+                 {\uppercase{\abstractname}}}
+     \begin{spacing}{\@defaultbaselinestretch} \par}
+    {\end{spacing} \par \vspace{20mm} \newpage}
+
+
+%%%
+%%% Command to generate dedication page.
+%%%
+\newcommand{\thesisdedicationpage}{
+    \strut \vfill
+    \begin{spacing}{\@defaultbaselinestretch}
+    \begin{center}
+      \thesisdedication
+    \end{center}
+    \end{spacing}
+    \vfill \strut
+    \newpage}
+
+%%%
+%%% Environment to generate acknowledgments page.
+%%%
+\newenvironment{thesisacknowledgments}
+    {%\doublespace\small\normalsize
+     \chapter*{\@thesisacknowledgmenthead
+         \@mkboth{\uppercase{\@thesisacknowledgmenthead}}
+                 {\uppercase{\@thesisacknowledgmenthead}}}
+     %\addcontentsline{toc}{chapter}{\@thesisacknowledgmenthead}
+     \begin{spacing}{\@defaultbaselinestretch}}
+     { \end{spacing}\newpage}
+%%%
+%%%  While this looks cool thesis check rejects it.
+%%%
+%%%    {\end{spacing} \par \vspace{10mm}
+%%%     \raggedleft \@thesisacknowledgmentsigname \\[5mm]
+%%%     \raggedright \@thesisacknowledgmentsigplace \newpage}
+
+%%%
+%%% Environment to generate vita page.
+%%%
+\newenvironment{thesisauthorvita}
+    {\clearpage
+     \chapter*{\@thesisvitahead
+         \@mkboth{\uppercase{\@thesisvitahead}}
+                 {\uppercase{\@thesisvitahead}}}
+    \addcontentsline{toc}{chapter}{\@thesisvitahead}
+    \begin{spacing}{\@defaultbaselinestretch}}
+    {\end{spacing} \par \vspace{20mm}
+     %\noindent Permanent Address:
+      % \begin{minipage}[t]{90mm}
+       %  \thesisauthoraddress
+       %\end{minipage}
+     %\par \vspace{15mm}
+     %\noindent This \lowercase\expandafter{\thesistype} was
+     %  typeset with \LaTeXe\footnote{\LaTeXe{} is an extension of \LaTeX.
+      % trademark of the American Mathematical Society.  The macros used in
+      % formatting this \lowercase\expandafter{\thesistype} were written
+     %  by Dinesh Das, Department of Computer Sciences, The University
+     %  of Texas at Austin.
+    %} by \thesistypist.
+}
+
+\newcommand{\@chapteralignment}{\centering}
+\renewcommand{\chapter}{\clearpage
+   \ifnum\@appendix=1
+     \renewcommand{\@chaptertype}{\appendixname}
+   \else
+     \renewcommand{\@chaptertype}{\chaptername}
+   \fi
+   \thispagestyle{plain}%
+   \global\@topnum\z@
+   \@afterindentfalse
+   \secdef\@chapter\@schapter
+   }
+\renewcommand\appendix{\par
+%  \addcontentsline{toc}{chapter}%
+%    {\appendixname \protect\numberline{}}%
+  \setcounter{chapter}{0}%
+  \setcounter{section}{0}%
+  \renewcommand{\@chapapp}{\appendixname}%
+  \renewcommand{\thechapter}{\Alph{chapter}}
+  \renewcommand{\@appendix}{1}}
+
+%%%
+%%% Define chapter heading placement commands.
+%%%
+\newcommand{\leftchapter}{
+    \renewcommand{\@chapteralignment}{\raggedright}}
+\newcommand{\centerchapter}{
+    \renewcommand{\@chapteralignment}{\centering}}
+\newcommand{\rightchapter}{
+    \renewcommand{\@chapteralignment}{\raggedleft}}
+
+%%%
+%%% Command from report.cls, (c) LaTeX3 Project.
+%%% edited to remove the leading chapter etc from toc.
+%%% Original lines remain they are just commented out.
+%%%
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                      \refstepcounter{chapter}%
+                      \typeout{\@chapapp\space\thechapter.}%
+                         \ifnum\@appendix=1
+                           \addcontentsline{toc}{chapter}%
+                             {\protect\numberline{}\appendixname\ {\it \thechapter}:\ #1}%
+                         \else
+                           \addcontentsline{toc}{chapter}%
+                             {\protect\numberline{\thechapter}#1}%
+                         \fi
+                    \else
+                    	\ifnum\@appendix=1
+                        \addcontentsline{toc}{chapter}{\protect\numberline{}\appendixname\ {\it \thechapter}:\ #1}
+                      \else
+                        \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter} #1}
+                      \fi
+                    \fi
+                    \ifnum\value{chapter}=1
+                      \ifnum\@appendix=0
+                        \pagestyle{\@textpagestyle}
+                        \pagenumbering{\@textpagenumbering}
+                      \fi
+                    \fi
+                    \chaptermark{#1}%
+                    \addtocontents{lof}{\protect\addvspace{\lofchapskip em}}%
+                    \addtocontents{lot}{\protect\addvspace{\lotchapskip em}}%
+                    \if@twocolumn
+                      \@topnewpage[\@makechapterhead{#2}]%
+                    \else
+                      \@makechapterhead{#2}%
+                      \@afterheading
+                    \fi
+                    }
+
+%%% ADDCONTENTSLINE
+%%% Command from latex.ltx, (c) LaTeX3 Project.
+%%% 
+%%% Needs to be fixed to handle appendix subsections correctly
+%%%
+\def\addcontentsline#1#2#3{\if@filesw \begingroup
+\let\label\@gobble \let\index\@gobble \let\glossary\@gobble
+\let\protect\@unexpandable@protect
+\@temptokena{\thepage}%
+\edef\@tempa{\write \@auxout{\string\@writefile{#1}{\protect
+     \contentsline{#2}{#3}{\the\@temptokena}}}}\@tempa
+   \if@nobreak \ifvmode\nobreak\fi\fi\endgroup\fi}
+
+
+%%%
+%%% Command from report.cls, (c) LaTeX3 Project.
+%%%
+%%%%%% CHANGED by Karteek
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \@chapteralignment \reset@font
+    \ifnum \c@secnumdepth >\m@ne
+      \Large\bfseries \@chapapp{} {\it \thechapter}
+      \par
+      \vskip 20\p@
+    \fi
+    \Large \bfseries #1\par
+    \nobreak
+    \vskip 40\p@
+  }}
+
+\def\@makeschapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \@chapteralignment
+    \reset@font
+    \Large \bfseries #1\par
+    \nobreak
+    \vskip 40\p@
+  }}
+
+%%%
+%%% Command from report.cls, (c) LaTeX3 Project.
+%%%
+\def\thebibliography#1{%
+ \chapter*{\center{Bibliography}}
+ \@mkboth{\centerline{{\ThesisHeadSize BIBLIOGRAPHY}}}{{\ThesisHeadSize BIBLIOGRAPHY}}
+ \addtocontents{toc}{\protect{\addvspace{3.0ex plus 1pt}}}
+ \addcontentsline{toc}{chapter}{\protect{Bibliography}}
+ \list{[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+ \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+ \def\newblock{\hskip .11em plus .33em minus .07em}
+ \sloppy\clubpenalty4000\widowpenalty4000
+ \sfcode`\.=1000\relax}
+\let\endthebibliography=\endlist
+
+%%%
+%%% Command from report.cls, (c) LaTeX3 Project.
+%%%
+\renewcommand\listoftables{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapter*{\listtablename
+      \@mkboth{\uppercase{\listtablename}}{\uppercase{\listtablename}}}%
+    %\addcontentsline{toc}{chapter}{\listtablename}
+    \hbox to \textwidth{{{Table \hfill Page}}}
+    \begin{spacing}{\lotspacing}
+    \@starttoc{lot}%
+    \end{spacing}
+    \if@restonecol\twocolumn\fi
+    }
+
+\renewcommand\listoffigures{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapter*{\listfigurename
+      \@mkboth{\uppercase{\listfigurename}}%
+              {\uppercase{\listfigurename}}}%
+    %\addcontentsline{toc}{chapter}{\listfigurename}
+    \hbox to \textwidth{{{Figure \hfill Page}}}
+    \begin{spacing}{\lofspacing}
+       \@starttoc{lof}%
+    \end{spacing}
+    \if@restonecol\twocolumn\fi
+    }
+
+\renewcommand\tableofcontents{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapter*{\contentsname
+        \@mkboth{\uppercase{\contentsname}}{\uppercase{\contentsname}}}%
+    \hbox to \textwidth{{{Chapter \hfill Page}}}
+    \begin{spacing}{\tocspacing}
+    \@starttoc{toc}%
+    \end{spacing}
+    \if@restonecol\twocolumn\fi
+    }
+
+%%%
+%%% Command to print draft version of the thesis.
+%%%
+\newcommand{\thesisdraft}{
+    \setlength{\topmargin}{0in}
+    \setlength{\headheight}{0.2in}
+    \setlength{\headsep}{0.25in}
+    \renewcommand{\@textpagestyle}{myheadings}
+    \def\ps@myheadings{%
+     \let\@oddfoot\@empty\let\@evenfoot\@empty
+     \def\@oddhead{\textsl{Draft of \timestamp}\hfil\thepage}%
+     \let\@mkboth\@gobbletwo
+     \let\chaptermark\@gobble
+     \let\sectionmark\@gobble}
+    }
+
+%%%
+%%% Code to compute current timestamp.  By Christopher Lott.
+%%%
+\newcount\hour \newcount\minute
+\hour=\time  \divide \hour by 60
+\minute=\time
+\loop \ifnum \minute > 59 \advance \minute by -60 \repeat
+\def\now{\ifnum \hour<13 \number\hour:%
+                      \ifnum \minute<10 0\fi
+                      \number\minute
+                      \ifnum \hour<12 \ am\else \ pm\fi
+         \else \advance \hour by -12 \number\hour:%
+                      \ifnum \minute<10 0\fi
+                      \number\minute \ pm\fi}
+\newcount\wwwy
+\newcount\wwwm
+\newcount\wwwd
+\newcount\wwwc
+\newcount\wwwt
+\newcount\wwws
+
+\def\weekday@{% suppress the blank before the day
+\wwwc=\wwwy
+\divide\wwwc100\relax
+\wwwt=-\wwwc
+\multiply\wwwt100\relax
+\advance\wwwy\wwwt
+\wwws=\wwwy
+\multiply\wwws1461\relax
+\divide\wwws4\relax
+\wwwt=\wwwm
+\multiply\wwwt764\relax
+\divide\wwwt25\relax
+\advance\wwws\wwwt
+\advance\wwws\wwwd
+\ifnum\wwwm>\tw@\advance\wwws\thr@@\else\weekday@@\fi
+\wwwt=-\wwws
+\divide\wwwt7\relax
+\multiply\wwwt7\relax
+\advance\wwws\wwwt
+}
+
+\def\weekday@@{%
+\wwwt=\wwwy
+\divide\wwwt4\relax
+\multiply\wwwt4\relax
+\advance\wwwt-\wwwy
+\ifnum\wwwt=\z@\advance\wwws4\else\advance\wwws5\if}
+
+\def\weekdayenglish#1#2#3{% year, month 1--12, day 1--31
+\wwwy=#1\relax\wwwm=#2\relax\wwwd=#3\relax\weekday@
+\ifcase\wwws Sunday\or Monday\or Tuesday\or Wednesday\or 
+Thursday\or Friday\or Saturday\fi}
+
+\def\weekdaygerman#1#2#3{% year, month 1--12, day 1--31
+\wwwy=#1\relax\wwwm=#2\relax\wwwd=#3\relax\weekday@
+\ifcase\wwws Sonntag\or Montag\or Dienstag\or Mittwoch\or 
+Donnerstag\or Freitag\or Samstag\fi}
+
+\def\weekdayfrench#1#2#3{% year, month 1--12, day 1--31
+\wwwy=#1\relax\wwwm=#2\relax\wwwd=#3\relax\weekday@
+\ifcase\wwws dimanche\or lundi\or mardi\or mercredi\or 
+jeudi\or vendredi\or samedi\fi}
+
+\def\weekday#1#2#3{\weekdayenglish{#1}{#2}{#3}}
+
+\def\timestamp{\now,\ \weekday{\year}{\month}{\day},\ \today}
+
+%%%
+%%% Commands for spacing.  Some parts from spacing.sty by Stephen Page.
+%%% 
+\ifx\undefined\selectfont
+\def\@setsize#1#2#3#4{\@nomath#1
+   \let\@currsize#1\baselineskip
+   #2\baselineskip\baselinestretch\baselineskip
+   \parskip\baselinestretch\parskip
+   \setbox\strutbox\hbox{\vrule height.7\baselineskip
+      depth.3\baselineskip width\z@}
+   \normalbaselineskip\baselineskip#3#4}
+\else
+\def\@newbaseline{%
+    \ifx\undefined\setnew@baselineskip
+      \baselineskip\f@baselineskip\relax
+    \else
+      \setnew@baselineskip
+    \fi
+    \baselineskip\baselinestretch\baselineskip
+    \setbox\strutbox\hbox{\vrule\@height.7\baselineskip
+    \@depth.3\baselineskip \@width\z@}%
+    \normalbaselineskip\baselineskip}
+\fi
+%%%
+%%% Reset baselinestretch within footnotes and floats. Originally stolen
+%%% from Stanford thesis style.
+%%%
+\def\@xfloat#1[#2]{\ifhmode \@bsphack\@floatpenalty -\@Mii\else
+   \@floatpenalty-\@Miii\fi\def\@captype{#1}\ifinner
+      \@parmoderr\@floatpenalty\z@
+    \else\@next\@currbox\@freelist{\@tempcnta\csname ftype@#1\endcsname
+       \multiply\@tempcnta\@xxxii\advance\@tempcnta\sixt@@n
+       \@tfor \@tempa :=#2\do
+                        {\if\@tempa h\advance\@tempcnta \@ne\fi
+                         \if\@tempa t\advance\@tempcnta \tw@\fi
+                         \if\@tempa b\advance\@tempcnta 4\relax\fi
+                         \if\@tempa p\advance\@tempcnta 8\relax\fi
+         }\global\count\@currbox\@tempcnta}\@fltovf\fi
+    \global\setbox\@currbox\vbox\bgroup 
+    \def\baselinestretch{1}
+    \ifx\undefined\selectfont
+    \small\normalsize
+    \else
+    \@newbaseline
+    \fi
+    \boxmaxdepth\z@
+    \hsize\columnwidth \@parboxrestore}
+\long\def\@footnotetext#1{\insert\footins{\def\baselinestretch{1}\footnotesize
+    \interlinepenalty\interfootnotelinepenalty 
+    \splittopskip\footnotesep
+    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM
+    \hsize\columnwidth \@parboxrestore
+   \edef\@currentlabel{\csname p@footnote\endcsname\@thefnmark}\@makefntext
+    {\rule{\z@}{\footnotesep}\ignorespaces
+      #1\strut}}}
+%%%
+%%% Stolen from MIT.
+%%%
+\def\spacing#1{\par%
+ \begingroup
+ \def\baselinestretch{#1}
+ \ifx\undefined\selectfont
+ \ifx\@currsize\normalsize\@normalsize\else\@currsize\fi
+ \else
+ \@newbaseline
+ \fi}
+\def\endspacing{\par
+ \vskip \parskip
+ \vskip \baselineskip
+ \endgroup
+ \vskip -\parskip
+ \vskip -\baselineskip}
+
+%%%
+%%% The following commands are for LaTeX compatibility mode.
+%%% This does not work as yet without ugly hacks; if you know of an
+%%% elegant solution, please send me email.
+%%%
+%%% \newif\if@openbib%
+%%% \@openbibfalse%
+%%% \@ifundefined{LaTeXe}{%
+%%%     \newcommand{\textbf}[1]{{\bf #1}}%
+%%%     \newcommand{\textsl}[1]{{\sl #1}}%
+%%%     \newcommand{\textsc}[1]{{\sc #1}}%
+%%%     \newcommand{\bfseries}{\bf}%
+%%%     \newcommand{\slshape}{\sl}%
+%%%     \newcommand{\newblock}{}
+%%%     \def\spacing#1{\par%
+%%%     \begingroup
+%%%     \def\baselinestretch{#1}
+%%%     \small\normalsize}
+%%%     \def\endspacing{\par
+%%%     \vskip \parskip
+%%%     \vskip \baselineskip
+%%%     \endgroup
+%%%     \vskip -\parskip
+%%%     \vskip -\baselineskip
+%%%     \@base{\@defaultbaselinestretch}\small\normalsize}}{}
+%%%
+
+%%%%% My stuff
+
+
+
