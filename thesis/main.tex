@@ -1,0 +1,76 @@
+% !TEX root = ./main.tex
+% Thesis
+
+\input{preamble.tex}
+
+
+\begin{document}
+% Page settings
+\pagenumbering{roman}
+
+% Title and copyright pages
+\input{titleCopyrightPage.tex}
+% Certificate page
+\input{certificate.tex}
+% Dedication page
+\newpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+    {\large
+        To SOMEONE
+    }
+\end{center}
+\vspace*{\fill}
+
+% Acknowledgements page
+\chapter*{Acknowledgements}
+\label{ch:ack}
+\input{acknowledgements.tex}
+
+% Abstract page
+\chapter*{Abstract}
+\label{ch:abstract}
+\input{abstract.tex}
+
+\tableofcontents
+\listoffigures
+\listoftables
+% Start of main document
+\startDocument
+
+% --------------------- Introduction page ---------------------
+\chapter{Introduction}
+\label{ch:intro}
+\input{introduction.tex}
+
+% --------------------- Chapter ---------------------
+\chapter{Chapter Name}
+\label{ch:chap2}
+\input{chapter2.tex}
+
+% --------------------- Chapter ---------------------
+\chapter{Chapter Name}
+\label{ch:chap3}
+\input{chapter3.tex}
+
+% --------------------- Chapter ---------------------
+\chapter{Chapter Name}
+\label{ch:chap4}
+\input{chapter4.tex}
+
+% --------------------- Conclusions ---------------------
+\chapter{Conclusions}
+\label{ch:conc}
+\input{conclusion.tex}
+
+% --------------------- Related Publications ---------------------
+\chapter*{Related Publications}
+\label{ch:relatedPubs}
+\input{relatedPubs.tex}
+
+% Bibliography
+
+\printbibliography[heading=bibintoc]
+
+\end{document}

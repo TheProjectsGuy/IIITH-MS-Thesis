@@ -1,0 +1,55 @@
+% !TEX root = ./main.tex
+
+\documentclass[11pt, oneside]{book}
+\usepackage{times}
+\usepackage{xstring}
+\usepackage{ifthen}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{lipsum}     % For placeholder text (ipsum)
+\usepackage{fancyhdr}
+\usepackage{indentfirst}    % Indent the first line everywhere in doc
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{biblatex}
+\usepackage{caption}
+\usepackage{hyperref}   % Reference (for better navigation)
+\usepackage{titletoc}
+
+% =========== Configurations ===========
+% ------ Document formatting ------
+% \setlength{\oddsidemargin}{0.125in}
+% \setlength{\evensidemargin}{0.125in}
+\geometry{
+    a4paper,
+    textwidth=6.25in,
+    % textheight=8.7in,
+    bottom=0.8in,
+    top=1.5in,
+    % lmargin=0.125in,
+    % rmargin=0.125in,
+}
+% ------ Spacing ------
+\onehalfspacing     % Text
+\titlespacing{\section}{0in}{0.35in}{0.125in}
+\titlespacing{\subsection}{0in}{0.35in}{0.125in}
+% ------ Captions ------
+\captionsetup{labelfont={bf}, labelsep={space}}
+% ------ Graphics paths ------
+\graphicspath{{figures/}}
+% ------ Chapter font settings (Large and center titles) ------
+\titleformat{\chapter}[display]
+    {\normalfont\Large\centering\itshape}{Chapter \thechapter}{0.25in}
+    {\normalfont\Large\centering\bfseries}
+% \chapterfont{\Large\centering}
+% ------ Table of contents ------
+% TODO: The TOC titles should not be in bold and add heading
+% \contentsmargin{2.55em}
+% \dottedcontents{chapter}[0em]{\addvspace{0.5pc}}{1em}{0.5pc}
+% ------ Bibliography ------
+\addbibresource{Bibliography.bib}
+
+% Macro definitions
+\input{macros.tex}
+% Variable definitions
+\input{variables.tex}

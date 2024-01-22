@@ -1,0 +1,41 @@
+% !TEX root = ./main.tex
+
+% =========== Variables ===========
+%%  \thesisTitle        The title of the thesis
+%%  \thesisDegreeShort  Short form of \thesisDegree ("ms" or "phd")
+%%  \thesisProgramme    The enrolled program name (in full)
+%%  \thesisAdvisor      The advisor name (for the program)
+%%  \thesisCoAdvisor    The co-advisor name (could also be blank)
+%%  \myName             Name of student (full)
+%%  \myRollNo           Roll number of student
+%%  \myEmail            Email address of student
+%%  \thesisMonth        The month for the thesis
+%%  \thesisYear         The year for the thesis
+%%      Note for mentioning the Month and Year (for thesis): It should
+%%      be the submission month and year for spiral bound copy and it
+%%      should be the final defense month for the hard bound copy.
+%%
+%% The above variables also create the following variables
+%%  \thesisDegree       The degree for the thesis (in full form)
+%%      Could be "Master of Science" for MS or "Doctor of Philosophy"
+%%      for PhD degree
+%%
+\newcommand{\thesisTitle}{TITLE}
+\newcommand{\thesisDegreeShort}{ms}
+\newcommand{\thesisProgramme}{Programme}
+\newcommand{\thesisAdvisor}{Prof. NAME}
+\newcommand{\thesisCoAdvisor}{} % Blank = no co-advisor
+\newcommand{\myName}{NAME}
+\newcommand{\myRollNo}{ROLL NUMBER}
+\newcommand{\myEmail}{EMAIL ID}
+\newcommand{\thesisMonth}{MONTH}
+\newcommand{\thesisYear}{YEAR}
+
+% ----------- Dependent variables -----------
+\ifthenelse{\equal{\thesisDegreeShort}{ms}}{
+    \newcommand{\thesisDegree}{Master of Science}
+}{\ifthenelse{\equal{\thesisDegreeShort}{phd}}{
+    \newcommand{\thesisDegree}{Doctor of Philosophy}
+}{
+    \raiseError{Invalid "thesisDegreeShort" value}
+}}
