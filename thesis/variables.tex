@@ -1,5 +1,10 @@
 % !TEX root = ./main.tex
 
+% =========== Switches ===========
+%%  draftmode       If True, then draft mode is ON, else final 
+%%                  submission
+\newif\ifdraftmode \draftmodefalse
+
 % =========== Variables ===========
 %%  \thesisTitle        The title of the thesis
 %%  \thesisDegreeShort  Short form of \thesisDegree ("ms" or "phd")
@@ -20,16 +25,17 @@
 %%      Could be "Master of Science" for MS or "Doctor of Philosophy"
 %%      for PhD degree
 %%
-\newcommand{\thesisTitle}{TITLE}
+\newcommand{\thesisTitle}
+    {Foundation Models for Visual Place Recognition}
 \newcommand{\thesisDegreeShort}{ms}
-\newcommand{\thesisProgramme}{Programme}
-\newcommand{\thesisAdvisor}{Prof. NAME}
+\newcommand{\thesisProgramme}{Computer Science and Engineering}
+\newcommand{\thesisAdvisor}{Dr. K. Madhava Krishna}
 \newcommand{\thesisCoAdvisor}{} % Blank = no co-advisor
-\newcommand{\myName}{NAME}
-\newcommand{\myRollNo}{ROLL NUMBER}
-\newcommand{\myEmail}{EMAIL ID}
-\newcommand{\thesisMonth}{MONTH}
-\newcommand{\thesisYear}{YEAR}
+\newcommand{\myName}{Avneesh Mishra}
+\newcommand{\myRollNo}{2021701032}
+\newcommand{\myEmail}{avneesh.mishra@research.iiit.ac.in}
+\newcommand{\thesisMonth}{March}
+\newcommand{\thesisYear}{2024}
 
 % ----------- Dependent variables -----------
 \ifthenelse{\equal{\thesisDegreeShort}{ms}}{

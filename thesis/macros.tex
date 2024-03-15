@@ -1,5 +1,15 @@
 % !TEX root = ./main.tex
 
+% =========== Counters ===========
+%%  magicrownumbers     Automatically set the row numbers in a table
+%%                      context. Use '\rownumber' to put this in.
+%%      Inspired from: https://tex.stackexchange.com/q/21243/253896
+\newcounter{magicrownumbers}
+\preto\tabular{\setcounter{magicrownumbers}{0}}
+\newcommand{\rownumber}{
+    \stepcounter{magicrownumbers}\arabic{magicrownumbers}
+}
+
 % =========== Macros ===========
 %%  \raiseError     Raises an error with a message (argument)
 %%  \startDocument  Indicates the start of the main document (after

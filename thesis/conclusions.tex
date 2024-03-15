@@ -1,0 +1,113 @@
+% !TEX root = ./main.tex
+
+Our introduction (\cref{ch:intro}) established the field of mobile
+robotics as the primary domain of this work
+(\cref{subsec:intro-mobile-robotics}). It also provided an overview of
+simultaneous localization and mapping (SLAM) systems
+(\cref{subsec:intro-loc-and-map}), visual place recognition (VPR)
+systems (\cref{subsec:intro-vpr}), and image retrieval (IR) techniques
+using global image descriptors.
+
+\cref{ch:foundation-models} delves into Vision Foundation Models
+(VFMs). It discusses their core architecture, the Vision Transformer,
+focusing on both ViT (\cref{subsec:vit}) and DeIT
+(\cref{subsec:vit-deit}). The chapter also explores self-supervised
+learning concepts crucial for this thesis, such as knowledge
+distillation (\cref{subsec:fm-k-distill}).
+
+Furthermore, \cref{ch:foundation-models} introduces the specific
+foundation models employed in this work: DINO (\cref{subsec:fm-dino})
+and DINOv2 (\cref{subsec:fm-dinov2}). It's important to note that
+DINOv2 relies on iBOT (\cref{subsec:fm-ibot}) as an underlying
+dependency.
+
+Leveraging the power of vision foundation models and insights from
+traditional VPR systems, \cref{ch:anyloc} introduced AnyLoc, our novel
+image retrieval system for VPR.  AnyLoc demonstrates the significant
+promise that foundation models hold for tackling complex visual place
+recognition tasks, particularly in scenarios with limited data
+availability.
+
+This chapter concludes this thesis with the limitations of our system
+and some possible solutions to them. Following on latest developments,
+it also includes notes for improvements in the future.
+
+\section{Limitations and Suggestions}
+
+\paragraph{Descriptor Dimensionality}
+
+While AnyLoc achieves state-of-the-art performance across diverse
+domains (see \cref{tab:anyloc_bench_aerial,tab:anyloc_bench_indoor,tab:anyloc_bench_outdoor,tab:anyloc_bench_unstruct}),
+its high-dimensional descriptors (49,152 elements) pose challenges for
+deployment in memory-constrained environments. To address this, we
+employ Principal Component Analysis (PCA) for efficient dimensionality
+reduction to 512 elements, with minimal to no performance impact.
+Exploring alternative feature aggregation and dimensionality reduction
+techniques holds promise for further improvements in this area.
+
+
+\paragraph{Size and Latency}
+
+The backbone of our most efficient model is ViT-G, which has 1.1B
+parameters and requires 6 GB VRAM under low-power hardware settings.
+This large model size presents challenges for deployment in real-world
+environments with limited memory resources.
+
+ViT-G also exhibits significant latency during loading and forward
+passes (AnyLoc takes about 0.2 seconds for some images). This latency
+can hinder real-time applications that require fast turnaround times.
+
+Some potential solutions to the above problems could include
+
+\begin{itemize}
+    \item \emph{Efficient Transformer Architectures}:  Investigating
+        foundation models trained using more efficient transformer
+        architectures, such as CCT, could lead to smaller models that
+        maintain a good balance between memory footprint, accuracy,
+        and speed.
+    \item \emph{Knowledge Distillation and VPR-Specific Supervision}:
+        Exploring a combination of knowledge distillation and
+        VPR-specific supervision techniques holds significant
+        potential for creating more efficient VFMs specifically
+        tailored for visual place recognition tasks.
+    \item \emph{Implementation Optimizations}: Utilizing lower-level 
+        code optimizations like those offered by NVIDIA TensorRT
+        \cite{Zhou2022ExploringTT} or specialized hardware like FPGAs
+        \cite{Wang2022ViAAN} could further unlock the potential of the
+        ViT architecture in terms of speed and throughput.
+\end{itemize}
+
+\paragraph{Other Foundation Models}
+
+The recent emergence of large language models (LLMs) equipped with
+vision capabilities, such as GPT-4V \cite{Yang2023TheDO} and Google
+Gemini \cite{Anil2023GeminiAF}, opens exciting possibilities for
+visual place recognition (VPR). While our experiments with MAE
+\cite{He2021MaskedAA} and CLIP \cite{Ilharco2021OpenCLIP} under our
+specific settings did not yield significant results, these models
+remain largely unexplored in the context of VPR tasks.
+
+\paragraph{Other Concurrent Work}
+
+Includes using foundation models for autonomous driving
+\cite{Wang2023DriveAG} and generative models to create worlds (for
+training robust models) \cite{Bogdoll2023MUVOAM} (MUVO),
+\cite{Hu2023GAIA1AG} (GAIA). These models could also possibly be
+learning world representations necessary for robust VPR.
+
+\section{Future Scope}
+
+Recent advancements in the Vision Transformer (ViT) field, such as
+register tokens \cite{Darcet2023VisionTN}, hold promise for further
+improvements in AnyLoc. These tokens can potentially help ViTs learn
+more effective latent maps, which could translate to enhanced
+performance in visual place recognition tasks. Similarly, token
+reorganization techniques like those explored in \cite{Liang2022NotAP}
+(using specific tokens instead of all) and architectural changes like
+variations in normalization position \cite{Xiong2020OnLN} could
+further optimize AnyLoc's efficiency and accuracy. By integrating
+these advancements and potentially exploring their synergistic
+effects, future iterations of AnyLoc could achieve even greater
+performance and pave the way for seamless integration into a full SLAM
+system, aiding mobile robots in tasks like real-time localization and
+environment understanding.

@@ -1,2 +1,4 @@
 # Don't ignore the final output
 !main.pdf
+# Ignore the backup files of drawio
+*.bkp

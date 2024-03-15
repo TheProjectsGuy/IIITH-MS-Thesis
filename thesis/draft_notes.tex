@@ -1,0 +1,77 @@
+% !TEX root = ./main.tex
+% A list of all mathematical symbols used, in a table for quick lookup
+
+\chapter*{Draft Notes}
+\addcontentsline{toc}{chapter}{Draft Notes}
+
+This chapter will appear in the draft version ONLY.
+
+\section{Mathematical Symbols}
+
+A table of all mathematical symbols used (and their expected types
+\footnote{As \href{https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject}{text} 
+and function signatures})
+
+% Long tables: https://tex.stackexchange.com/a/26483/253896
+% \begin{table}[h!]
+% \centering
+\begin{longtable}{||c|c|c|p{8cm}||}
+    \hline
+        S. No. & Symbol & Type & Description \\
+    \hline
+    % Main content
+    \rownumber & $\mathbf{I}_{\textbf{DB}}$ & $\mathbb{R}^{N_d, C, H,
+        W}$ & A set of $N_d$ database images, each with $C$ channels
+        (3 for RGB and 1 for grayscale) and $H, W$ shape. \\
+    \rownumber & $\mathbf{I}_{DB}$ & $\mathbb{R}^{C, H, W}$ & A single
+        database image (usually from the set above) \\
+    \rownumber & $\mathbf{D}_{\textbf{DB}}$ & $\mathbb{R}^{N_d, d}$ &
+        Database (global) descriptors for $N_d$ images,
+        $d$-dimensional each \\
+    \rownumber & $\mathbf{d}_{DB}$ & $\mathbb{R}^{d}$ & A $d$
+        dimensional global descriptor for a single database image \\
+    \rownumber & $\mathrm{GD}(\bullet)$ & $\mathbb{R}^{C, H, W}
+        \rightarrow \mathbb{R}^d$ & A function to convert an image to
+        global (image) descriptor \\
+    \rownumber & $\mathbf{I}_q$ & $\mathbb{R}^{C, H, W}$ & A (single) 
+        query image \\
+    \rownumber & $\mathbf{d}_q$ & $\mathbb{R}^{d}$ & A global
+        descriptor for a (single) query image \\
+    \rownumber & $\mathrm{sim}(\bullet, \bullet)$ & $(\mathbb{R}^d,
+        \mathbb{R}^d) \rightarrow \mathbb{R}$ & A similarity function 
+        (0 for no similarity, 1 for high similarity) \\
+    \rownumber & $\mathbf{S}_u$ & $\mathbb{R}^{N_d}$ & A set of $N_d$
+        similarity scores between database images and a query image \\
+    \rownumber & $\mathrm{argsort}(\bullet, \bullet)$ & $(
+        \mathbb{R}^{N_d}, \textbf{A}) \rightarrow \mathbb{N}^{N_d}$ &
+        Sort the $N_d$ length set and return the indices. Order is set
+        using $\textbf{A} = \{\textup{ascending}, 
+        \textup{descending}\}$ \\
+    \rownumber & $\mathbf{K}$ & $\mathbb{R}^{N_k, 2}$ & A list of 
+        $N_k$ keypoints detected in an image (each is a $(h_i, w_i)$ 
+        location on the image) \\
+    \rownumber & $\mathbf{D}_k$ & $\mathbb{R}^{N_k, d_k}$ & A list of
+        $N_k$ descriptors for an image (each $d_k$ dimensional) \\
+    \rownumber & $\mathbf{G}$ & $\mathbb{R}^{N_p, C, s_h, s_w}$ & A 
+        set of $N_p = n_h \times n_w$ patches ($n_h$ along the height
+        and $n_w$ along the width, each of shape $(s_h, s_w)$) from an
+        image \\
+    \rownumber & $\mathbf{D}_p$ & $\mathbb{R}^{N_p, d_p}$ & Flattened
+        patches $\mathbf{G}$ where $d_p = C \times s_h \times s_w$ \\
+    \rownumber & $\mathbf{C}$ & $\mathbb{R}^{K, d_k}$ & Cluster
+        centers (vocabulary) from a database of images. There are $K$
+        cluster centers, each a $d_k$-dimensional vector \\
+    \rownumber & $\alpha (\bullet, \bullet)$ & $(\mathbb{R}^{d_k},
+        \mathbb{N}) \rightarrow \{0, 1\}$ & Operator to confirm
+        assignment of a $d_k$-dimensional descriptor to
+        the $k$-th cluster in vocabulary (2nd argument) \\
+    \rownumber & $\tilde{\alpha} (\bullet, \bullet)$ &
+        $(\mathbb{R}^{d_k}, \mathbb{R}^{d_k}) \rightarrow [0, 1]$ &
+        Function to soft cluster assignment for descriptor to cluster.
+        Used for NetVLAD \\
+    \rownumber & $\mathbf{f}_G$ & $\mathbb{R}^{d_k}$ & GeM pooled
+        global descriptor \\
+    \hline
+\end{longtable}
+% \end{table}
+

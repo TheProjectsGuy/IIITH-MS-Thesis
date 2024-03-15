@@ -12,6 +12,7 @@
 *.lot
 *.lof
 *.lol
+*.up[ab]
 # Logging files
 *.log
 # Synchronization file

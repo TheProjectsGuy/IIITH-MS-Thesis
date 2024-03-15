@@ -5,16 +5,31 @@
 \usepackage{xstring}
 \usepackage{ifthen}
 \usepackage{graphicx}
+\usepackage{microtype}
 \usepackage{geometry}
 \usepackage{lipsum}     % For placeholder text (ipsum)
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{etoolbox}
 \usepackage{fancyhdr}
+\usepackage{arydshln}
 \usepackage{indentfirst}    % Indent the first line everywhere in doc
 \usepackage{setspace}
 \usepackage{titlesec}
-\usepackage{biblatex}
+\usepackage[sorting=ydnt]{biblatex}
 \usepackage{caption}
+\usepackage{subcaption}
 \usepackage{hyperref}   % Reference (for better navigation)
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{wasysym}
 \usepackage{titletoc}
+\usepackage{acronym}
+\usepackage{xcolor}
+\usepackage[color=red, linewidth=2bp]{pdfcomment}
+\usepackage[capitalize]{cleveref}
+
 
 % =========== Configurations ===========
 % ------ Document formatting ------
@@ -29,6 +44,9 @@
     % lmargin=0.125in,
     % rmargin=0.125in,
 }
+% ------ Numbering and counters ------
+% Section numbering depth
+\setcounter{secnumdepth}{3}
 % ------ Spacing ------
 \onehalfspacing     % Text
 \titlespacing{\section}{0in}{0.35in}{0.125in}
@@ -46,6 +64,8 @@
 % TODO: The TOC titles should not be in bold and add heading
 % \contentsmargin{2.55em}
 % \dottedcontents{chapter}[0em]{\addvspace{0.5pc}}{1em}{0.5pc}
+% ------ Clever Referencing ------
+% \crefname{figure}{figure}{figures}
 % ------ Bibliography ------
 \addbibresource{Bibliography.bib}
 

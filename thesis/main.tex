@@ -18,7 +18,7 @@
 \vspace*{\fill}
 \begin{center}
     {\large
-        To SOMEONE
+        To Serendipity
     }
 \end{center}
 \vspace*{\fill}
@@ -36,6 +36,10 @@
 \tableofcontents
 \listoffigures
 \listoftables
+\ifdraftmode
+    \input{draft_notes.tex}    % Just in the draft mode
+\fi
+% \input{acronyms.tex}  % Do we need this? (not used)
 % Start of main document
 \startDocument
 
@@ -46,23 +50,18 @@
 
 % --------------------- Chapter ---------------------
 \chapter{Foundation Models}
-\label{ch:chap2}
-\input{chapter2.tex}
+\label{ch:foundation-models}
+\input{foundation_models.tex}
 
 % --------------------- Chapter ---------------------
-\chapter{AnyLoc: Foundation model features for VPR}
-\label{ch:chap3}
-\input{chapter3.tex}
-
-% --------------------- Chapter ---------------------
-\chapter{Future Scope}
-\label{ch:chap4}
-\input{chapter4.tex}
+\chapter{AnyLoc: Foundation Model features for VPR}
+\label{ch:anyloc}
+\input{anyloc.tex}
 
 % --------------------- Conclusions ---------------------
 \chapter{Conclusions}
 \label{ch:conc}
-\input{conclusion.tex}
+\input{conclusions.tex}
 
 % --------------------- Related Publications ---------------------
 \chapter*{Related Publications}
@@ -70,7 +69,6 @@
 \input{relatedPubs.tex}
 
 % Bibliography
-
 \printbibliography[heading=bibintoc]
 
 \end{document}
