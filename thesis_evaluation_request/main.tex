@@ -1,104 +1,91 @@
 \documentclass[11pt]{article}
-\pagestyle{empty}
-
-%% IIIT, Hyderabad
-%% File created by: P J Narayanan.
-
+\usepackage[a4paper, textwidth=160mm, textheight=220mm]{geometry}
+\usepackage{microtype}
 \usepackage{amssymb}
 
+% Configurations
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+% Macro
 \newcommand{\checkbox}[1]{%
-  % From: https://tex.stackexchange.com/a/568208
-  \ifnum#1=1
+% From: https://tex.stackexchange.com/a/568208
+\ifnum#1=1
     \makebox[0pt][l]{\raisebox{0.15ex}{\hspace{0.1em}$\checkmark$}}%
-  \fi
-  $\square$%
+\fi $\square$%
 }
 
-\oddsidemargin=0mm \textwidth=160mm
-\topmargin=0mm \textheight=220mm
-
-\parindent=0mm
-
-\title{International Institute of Information Technology\\Hyderabad}
-\author{Thesis Evaluation Request Form for MS/PhD Students}
-\date{}
-
 \begin{document}
-%\maketitle
-\begin{center}
-{\Large\bf International Institute of Information Technology, %\\[1mm]
-\large Hyderabad}\\[2mm]
-{\large\bf MS/PhD Thesis Evaluation Request Form}\\[8mm]
-\end{center}
-\thispagestyle{empty}
-
-{\bf Name of the Candidate:}\\[2mm]
-{\bf Roll no:}%\hfill{\bf Date:}\hspace*{20mm}
-\\[2mm]
-{\bf Advisor(s):}\\[2mm]
-
-\hrule
-\ \\[-4mm]
-
-{\bf Thesis title:}\\
-
-{\bf Key contributions:} (List top 4-5 points)
-\begin{enumerate}\itemsep=0mm
-\item
-\item
-\item
-\end{enumerate}
-
-\ \\[-4mm]
-
-{\bf Nature of the contribution:} (Tick all that apply)\vspace{-5mm}
-\begin{center}
-\begin{tabular}[2]{cp{0.44\textwidth}|cp{0.44\textwidth}}
-\checkbox{0} & Development of new theory, concept, or algorithm with a
-  significant impact &
-\checkbox{0} & Enhancement or modification of known theory or concept \\[3mm]
-\checkbox{0} & Experimental work with a significant impact to theory/practice &
-\checkbox{0} & Some experiments to validate the concepts\\[3mm]
-\checkbox{0} & Building a part/whole of a system with a significant
-  functionality or enhancement in performance/functionality. &
-\checkbox{0} & Enhancements to parts of an existing system \\
-\end{tabular}
-\end{center}
-
-\ \\[7mm]
-
-{\small\bf [Signature of the candidate] \hfill [Signature of the advisor]}
-\\[2mm]
-{\bf Date:}\\[-2mm]
-\hrule
-
-\ \\[-4mm]
-
-{\small
-{\normalsize\bf Give the following additional details related to the
-  thesis. List all that apply.}
-\begin{itemize}\itemsep=0mm
-\item {\bf Publications:} List all applicable publications related to this
-work.  Submit the reviews from experts received for each. Separate them
-into Journals, Conferences, and Technical Reports.
-%% \begin{enumerate}
-%% \item
-%% \end{enumerate}
-\item {\bf Patents:} List the patents applied for or granted.
-%% \begin{enumerate}
-%% \item
-%% \end{enumerate}
-\item {\bf Demonstrations:} List the serious demonstrations of the work contained
-in the thesis.
-%% \begin{enumerate}
-%% \item
-%% \end{enumerate}
-\item {\bf Software packages for download/distribution:} List the software packages
-made available to the community with statistics on download, if available.
-%% \begin{enumerate}
-%% \item
-%% \end{enumerate}
-\end{itemize}}
-\hspace*{\fill}{\tiny P J Narayanan. Sep 2009}
+    \begin{center}
+        {\Large\bf
+        International Institute of Information Technology, Hyderabad
+        }\\[2mm]
+        {\large\bf
+            MS Thesis Evaluation Request Form
+        }\\[8mm]
+    \end{center}
+    {\bf Name of the Candidate:} \\ [2mm]
+    {\bf Roll no:} 
+    \hfill {\bf Date:}  \\ [2mm]
+    {\bf Advisor(s): }
+    \vspace{6mm}
+    \hrule
+    \vspace{3mm}
+    {\bf Thesis title:}
+        {Foundation Models for Visual Place Recognition} \\ [4mm]
+    {\bf Key contributions:}
+    \begin{enumerate}
+        \setlength{\itemsep}{0mm}
+        \item
+        \item
+        \item
+    \end{enumerate}
+    \vspace{2mm}
+    {\bf Nature of the contribution}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}   % Vertical spacing
+    \begin{tabular}{cp{0.42\textwidth}|cp{0.42\textwidth}}
+    \checkbox{0} &
+        Development of new theory, concept, or algorithm with a 
+        significant impact &
+    \checkbox{0} &
+        Enhancement or modification of known theory or concept \\
+    \checkbox{0} &
+        Experimental work with a significant impact to 
+        theory/practice &
+    \checkbox{0} &
+        Some experiments to validate the concepts \\
+    \checkbox{0} &
+        Building a part/whole of a system with a significant
+        functionality or enhancement in performance/functionality. &
+    \checkbox{0} &
+        Enhancements to parts of an existing system
+    \end{tabular}
+    \end{center}
+    \vspace{15mm}
+    {\small\bf [Signature of the candidate] 
+        \hfill [Signature of the advisor]} \\ [2mm]
+    {\bf Date:} DD/MM/YYYY
+    \vspace{2mm}
+    \hrule
+    \vspace{3mm}
+    {\bf Give the following additional details related to the thesis. 
+        List all that apply.}
+    \begin{itemize}
+        \setlength{\itemsep}{0mm}
+        \item {\bf Publications:}
+            List all applicable publications related to this work. 
+            Submit the reviews from experts received for each. 
+            Separate them into Journals, Conferences, and Technical 
+            Reports.
+        \item {\bf Patents:}
+            List the patents applied for or granted.
+        \item {\bf Demonstrations:}
+            List the serious demonstrations of the work contained in 
+            the thesis.
+        \item {\bf Software packages for download/distribution:}
+            List the software packages made available to the community 
+            with statistics on download, if available.
+    \end{itemize}
+    \hspace{\fill} {\tiny Name, Month Year}
 \end{document}
-
