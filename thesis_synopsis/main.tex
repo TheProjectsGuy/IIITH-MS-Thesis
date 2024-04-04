@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[a4paper, textwidth=160mm, textheight=220mm]{geometry}
+\usepackage[sorting=ydnt]{biblatex}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{lipsum}
+\addbibresource{bibliography.bib}
+
+% Configurations
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+    \begin{center}
+        {\bfseries\Large Thesis Synopsis} \\ [2.5mm]
+        {\large Title}
+    \end{center}
+    {\bf Name:} \\ [2mm]
+    {\bf Roll No.:}
+    \hfill {\bf Date:} \\ [2mm]
+    {\bf Advisor(s):} \\ [2mm]
+    {\bf Department:}
+    \vspace{2mm}
+    \hrule
+    \begin{center}
+    \subsection*{\centering Abstract}
+    \begin{minipage}{0.85\textwidth}
+        Abstract of the document. 
+        \lipsum[1] \\ [1mm]
+        {\bf Keywords:} Somethings
+    \end{minipage} \\ [2mm]
+    \end{center}
+
+    \subsection*{Contribution}
+    Contribution of the work
+
+    \subsection*{Background}
+    Background required to understand thesis. Cite some related works.
+    \cite{Dosovitskiy2020AnII}
+
+    \subsection*{Thesis Layout}
+    Describe the layout of thesis.
+
+    \vspace{2mm}
+    \hrule
+    \vspace{2mm}
+    \printbibliography
+\end{document}
