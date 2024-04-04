@@ -1,50 +1,131 @@
 \documentclass{article}
 \usepackage[a4paper, textwidth=160mm, textheight=220mm]{geometry}
 \usepackage[sorting=ydnt]{biblatex}
-\usepackage{microtype}
 \usepackage{hyperref}
 \usepackage{titlesec}
+\usepackage{setspace}
 \usepackage{amssymb}
 \usepackage{lipsum}
-\addbibresource{bibliography.bib}
+\usepackage[en-IN]{datetime2}
 
 % Configurations
-\setlength{\parindent}{0pt}
+% \setlength{\parindent}{0pt}
 \pagestyle{empty}
+\onehalfspacing
+\addbibresource{bibliography.bib}
+
 
 \begin{document}
     \begin{center}
         {\bfseries\Large Thesis Synopsis} \\ [2.5mm]
-        {\large Title}
+        {\large Foundation Models for Visual Place Recognition}
     \end{center}
-    {\bf Name:} \\ [2mm]
-    {\bf Roll No.:}
-    \hfill {\bf Date:} \\ [2mm]
-    {\bf Advisor(s):} \\ [2mm]
-    {\bf Department:}
+    {\bf Name:} Avneesh Mishra
+    \hfill {\bf Roll No.:} 2021701032
+    \hfill {\bf Date:} \today \\ [2mm]
+    {\bf Advisor(s):} Prof. K. Madhava Krishna \\ [2mm]
+    {\bf Department:} Robotics Research Center (RRC), KCIS, IIIT Hyderabad
     \vspace{2mm}
     \hrule
     \begin{center}
     \subsection*{\centering Abstract}
     \begin{minipage}{0.85\textwidth}
-        Abstract of the document. 
-        \lipsum[1] \\ [1mm]
-        {\bf Keywords:} Somethings
+        Imagine a robot navigating a complex and unfamiliar
+        environment - underwater, subterranean, or even a dilapidated
+        building. Current Visual Place Recognition (VPR) techniques
+        often struggle with such diverse scenarios, requiring
+        re-training for each new environment. This limitation hinders
+        the development of truly autonomous robots. This work
+        introduces AnyLoc, a novel VPR system taking a significant
+        step towards universality. AnyLoc leverages feature
+        representations learned by powerful foundation models,
+        eliminating the need for VPR-specific training. Furthermore,
+        by combining these features with unsupervised aggregation
+        techniques, AnyLoc can uncover unique visual characteristics
+        that define different environments. Our experiments
+        demonstrate AnyLoc’s potential to function across multiple
+        environments (outdoor, indoor, aerial, underwater,
+        subterranean, and dilapidated) without retraining, laying the
+        groundwork for VPR solutions that could be deployed anywhere,
+        anytime, and across anyview. \\ [2mm]
+        {\bf Keywords:} Visual Place Recognition (VPR), Foundation 
+        Models (FM), Localization using Deep Learning
     \end{minipage} \\ [2mm]
     \end{center}
 
     \subsection*{Contribution}
-    Contribution of the work
+    This thesis introduces AnyLoc \cite{Keetha2023AnyLocTU}, a novel
+    method for generic image retrieval (IR) in the context of
+    localization tasks. AnyLoc leverages features learned by
+    foundation models (FMs) like DINOv2 \cite{Oquab2023DINOv2LR} to
+    extract global image descriptors. These descriptors are effective
+    across diverse environments (indoor, outdoor, aerial,
+    subterranean, degraded, and underwater) and scene variations
+    (day/night, viewpoint changes). Our approach utilizes latent
+    features from the penultimate layers of foundation models,
+    achieving state-of-the-art performance. We employ established
+    local descriptor aggregation techniques (VLAD
+    \cite{Arandjelovi2013AllAV}, GeM pooling
+    \cite{Radenovic2017FineTuningCI}) on patch descriptors to further
+    improve retrieval accuracy. Furthermore, we demonstrate that
+    applying dimensionality reduction methods like PCA significantly
+    reduces the memory footprint (up to 95x) without sacrificing
+    performance. This offers a valuable advantage for
+    resource-constrained deployment scenarios. Interestingly, we
+    discover that FMs inherently learn domains (like indoor, aerial,
+    etc.) from the data. This allows us to create domain-specific
+    off-the-shelf VPR systems that outperform supervised counterparts
+    by a significant margin. We also present an early benchmark on the
+    performance of various FMs for VPR across diverse environments.
 
-    \subsection*{Background}
-    Background required to understand thesis. Cite some related works.
-    \cite{Dosovitskiy2020AnII}
+    More specifically, this thesis introduces two novel image
+    retrieval methods for localization tasks: AnyLoc-VLAD-DINO and
+    AnyLoc-VLAD-DINOv2. Both leverage foundation models like DINO and
+    DINOv2 to extract powerful image descriptors. To enhance
+    performance across diverse environments, we create domain-specific
+    retrieval models. We achieve this by aggregating features from
+    images within similar domains (e.g., urban, indoor, aerial)
+    identified using a dimensionality reduction technique. Within the
+    FMs, we strategically select specific layers and features that
+    best capture these domain-specific properties. The selection
+    process and the insights gained from analyzing different features
+    are further elaborated upon in the thesis.
+
+    Our presented VLAD models beat supervised VPR baselines by over
+    5\% for indoor datasets, and by over 47\% for aerial datasets. We
+    get comparable performance even when comparing on large outdoor
+    datasets (94\% against 95\% for baseline), demonstrating their
+    generalizability across diverse environments. These models are
+    especially beneficial to use in cases of unstructured datasets
+    (like aerial, underwater, subterranean, and dilapidated
+    buildings). Furthermore, even after undergoing a 96 times
+    reduction (from 49k to 512 dimension) using PCA, there is no
+    significant performance drop (only 1\% on outdoor datasets). Using
+    our models off-the-shelf, we hope this improves VPR and
+    localization systems to work anytime, anywhere \& under anyview.
 
     \subsection*{Thesis Layout}
-    Describe the layout of thesis.
+    In order to understand the work fully, the reader needs prior
+    knowledge in two areas: visual place recognition (\emph{VPR})
+    through global descriptors and vision foundation models
+    (\emph{FM}). \textbf{Chapter 1} describes the contribution area
+    from the perspective of mobile robotics. It gives an overview of
+    Simultaneous Localization and Mapping (SLAM) systems and describes
+    VPR techniques (from the perspective of global image descriptors
+    through aggregation of local feature descriptors). \textbf{Chapter
+    2} contains the background for foundation models. It elaborates on
+    vision transformer models (ViT, DeIT, and CCT) and self-supervised
+    learning (SSL) methods used for training DINO and DINOv2.
+    \textbf{Chapter 3} presents AnyLoc, the core contribution of this
+    thesis. It includes a comprehensive evaluation against supervised
+    baselines and other foundation models. Additionally, ablation
+    studies (quantitative and qualitative) provide insights into the
+    model selection criteria. \textbf{Chapter 4} concludes the thesis
+    with limitations and suggestions for future development.
 
-    \vspace{2mm}
+    \vspace{3mm}
     \hrule
     \vspace{2mm}
+    % \pagebreak
     \printbibliography
 \end{document}
