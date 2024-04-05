@@ -1,7 +1,10 @@
 \documentclass[11pt]{article}
 \usepackage[a4paper, textwidth=160mm, textheight=220mm]{geometry}
+\usepackage[en-GB]{datetime2}
 \usepackage{microtype}
+\usepackage{hyperref}
 \usepackage{amssymb}
+\usepackage{lipsum}
 
 % Configurations
 \setlength{\parindent}{0pt}
@@ -24,10 +27,10 @@
             MS Thesis Evaluation Request Form
         }\\[8mm]
     \end{center}
-    {\bf Name of the Candidate:} \\ [2mm]
-    {\bf Roll No:} 
-    \hfill {\bf Date:}  \\ [2mm]
-    {\bf Advisor(s): }
+    {\bf Name of the Candidate:} Avneesh Mishra \\ [2mm]
+    {\bf Roll No:} 2021701032
+    \hfill {\bf Date:} \today \\ [2mm]
+    {\bf Advisor(s):} Prof. K. Madhava Krishna
     \vspace{6mm}
     \hrule
     \vspace{3mm}
@@ -36,9 +39,28 @@
     {\bf Key contributions:}
     \begin{enumerate}
         \setlength{\itemsep}{0mm}
-        \item
-        \item
-        \item
+        \item Demonstrating the efficacy of foundation model (FM)
+            features for generic image retrieval tasks in Visual Place
+            Recognition (VPR) applications.
+        \item Employing conventional local feature aggregation (VLAD)
+            on patch descriptors extracted from intermediate
+            transformer layers of foundation models for VPR.
+        \item Performing a comprehensive benchmarking of AnyLoc
+            against supervised VPR baselines, achieving significant
+            performance improvement (up to 47\%) across diverse
+            environments.
+        \item Demonstrating significant dimensionality reduction using
+            PCA (96x reduction) while maintaining high retrieval
+            accuracy, offering advantages for resource-constrained
+            deployments.
+        \item We discover that latent features of foundation models
+            learn domains that can generalize to many datasets of a
+            particular environment (like aerial, urban outdoor, and
+            indoor).
+        \item Providing an overview of Simultaneous Localization and
+            Mapping (SLAM), VPR, and other mobile robotics systems
+            (for downstream use cases) and the necessary background
+            for vision foundation models.
     \end{enumerate}
     \vspace{2mm}
     {\bf Nature of the contribution}
@@ -48,44 +70,121 @@
     \checkbox{0} &
         Development of new theory, concept, or algorithm with a 
         significant impact &
-    \checkbox{0} &
+    \checkbox{1} &
         Enhancement or modification of known theory or concept \\
     \checkbox{0} &
         Experimental work with a significant impact to 
         theory/practice &
-    \checkbox{0} &
+    \checkbox{1} &
         Some experiments to validate the concepts \\
     \checkbox{0} &
         Building a part/whole of a system with a significant
         functionality or enhancement in performance/functionality. &
-    \checkbox{0} &
+    \checkbox{1} &
         Enhancements to parts of an existing system
     \end{tabular}
     \end{center}
-    \vspace{15mm}
+    % \vspace{17mm}
+    \vfill
     {\small\bf [Signature of the candidate] 
         \hfill [Signature of the advisor]} \\ [2mm]
-    {\bf Date:} DD/MM/YYYY
+    % \DTMsetdatestyle{ddmmyyyy}
+    {\bf Date:} \today
+    % \vspace{2mm}
+    % \hrule
+    % \vspace{3mm}
+    \pagebreak \\
+    {\bf \large Publications} \\
+    Core to the thesis
+    \begin{itemize}
+        \item Keetha, Nikhil, \textbf{Avneesh Mishra}, Jay Karhade,
+            Krishna Murthy Jatavallabhula, Sebastian Scherer, Madhava
+            Krishna, and Sourav Garg. ``Anyloc: Towards universal
+            visual place recognition.'' \emph{IEEE Robotics and
+            Automation Letters (2023)} [Accepted].
+            \begin{itemize}
+                \item Also submitted as ``FoundLoc: Zero-shot Visual
+                    Place Recognition leveraging Foundation Models''
+                    (submission 3426) for Intelligent Robots and
+                    Systems (IROS 2023).
+                \item Also submitted (as submission 4812) to
+                    International Conference on Robotics and
+                    Automation (ICRA 2024). Decision pending.
+            \end{itemize}
+    \end{itemize}
+    Other works
+    \begin{itemize}
+        \item Peri, Abhishek, Kinal Mehta, \textbf{Avneesh Mishra},
+            Michael Milford, Sourav Garg, and K. Madhava Krishna.
+            ``ReF - Rotation Equivariant Features for Local Feature
+            Matching.'' arXiv preprint arXiv:2203.05206 (2022).
+    \end{itemize}
+    {\bf \large Patents} None \\ [2mm]
+    {\bf \large Demonstrations} None \\ [2mm]
+    {\bf \large Software Packages}:
+    \href{https://github.com/AnyLoc/AnyLoc}{GitHub: AnyLoc/AnyLoc} 
+    (\href{https://anyloc.github.io/}{Website}, 
+    \href{https://huggingface.co/spaces/TheProjectsGuy/AnyLoc}{
+        HuggingFace App},
+    \href{https://github.com/AnyLoc/DINO}{torch.hub})
     \vspace{2mm}
     \hrule
     \vspace{3mm}
-    {\bf Give the following additional details related to the thesis. 
-        List all that apply.}
-    \begin{itemize}
-        \setlength{\itemsep}{0mm}
-        \item {\bf Publications:}
-            List all applicable publications related to this work. 
-            Submit the reviews from experts received for each. 
-            Separate them into Journals, Conferences, and Technical 
-            Reports.
-        \item {\bf Patents:}
-            List the patents applied for or granted.
-        \item {\bf Demonstrations:}
-            List the serious demonstrations of the work contained in 
-            the thesis.
-        \item {\bf Software packages for download/distribution:}
-            List the software packages made available to the community 
-            with statistics on download, if available.
-    \end{itemize}
-    \hspace{\fill} {\tiny Name, Month Year}
+    {\bf \large Contribution Notes} \\ [2mm]
+    \begin{minipage}{\textwidth}
+    {\it Enhancement or modification of known theory or concept}
+    \vspace{-2mm}
+    \begin{quotation}
+        \noindent
+        This thesis introduces a novel approach to Visual Place
+        Recognition (VPR) by leveraging features learned by foundation
+        models (FMs) like DINO and DINOv2. Traditionally, VPR has
+        relied on handcrafted local feature descriptors. Our work
+        demonstrates that features extracted from intermediate
+        transformer layers of FMs, combined with established local
+        descriptor aggregation techniques (e.g., VLAD), significantly
+        improve VPR performance across diverse environments. This
+        approach effectively bridges the gap between powerful FM
+        features and established VPR techniques, leading to a new and
+        enhanced VPR paradigm.
+    \end{quotation}
+    \end{minipage}
+    \vspace{2mm}
+
+    \begin{minipage}{\textwidth}
+    {\it Some experiments to validate the concepts}
+    \vspace{-2mm}
+    \begin{quotation}
+        \noindent
+        This thesis rigorously validates the effectiveness of
+        leveraging foundation model (FM) features for Visual Place
+        Recognition (VPR) through extensive benchmarking. We employ a
+        diverse set of datasets encompassing various environments,
+        including indoor, outdoor, aerial, subterranean, dilapidated,
+        and underwater. This comprehensive evaluation allows us to
+        assess the generalizability of AnyLoc across these challenging
+        scenarios. The results demonstrate significant performance
+        improvements compared to supervised VPR baselines and
+        off-the-shelf foundation models, solidifying the efficacy of
+        our proposed approach. 
+    \end{quotation}
+    \end{minipage}
+    \vspace{2mm}
+
+    \begin{minipage}{\textwidth}
+    {\it Enhancements to parts of an existing system}
+    \vspace{-2mm}
+    \begin{quotation}
+        \noindent
+        This thesis presents AnyLoc, a novel system that enhances the
+        core image retrieval stage (matching query images against a
+        database) within Visual Place Recognition (VPR) pipelines.
+        This improvement contributes to more robust SLAM systems for
+        mobile robots. The first chapter of the thesis highlights the
+        area of contribution.
+    \end{quotation}
+    \end{minipage}
+    % \vspace{2mm}
+
+    % \hspace{\fill} {\tiny Avneesh Mishra, \today}
 \end{document}
