@@ -55,13 +55,18 @@
 \newcommand{\expheader}[3]{
     {\bf #1} \hfill {\it #2} \hfill #3
 }
+% New education header
+\newcommand{\eduheader}[4]{
+    {\bf #1} \hfill {\it #2} \hfill #3 \hfill \\
+    {\bf #4}
+}
 
 \begin{document}
     \begin{center}
         {\bf \LARGE Avneesh Mishra} \\ [4mm]
         \phoneChar +91 99163 32393 \qquad
         \texttt{123avneesh@gmail.com} \qquad
-        \homeChar Bengaluru, IN \\ [1mm]
+        \homeChar Bengaluru, Karnataka, IN \\ [1mm]
         \linkedinChar \href{
             https://www.linkedin.com/in/avneesh-mishra/}{
             avneesh-mishra} \qquad
@@ -72,9 +77,9 @@
     \end{center}
     % --------------------- Main profile ---------------------
     \newsec{Profile}
-    A Mechatronics engineer with research experience computer vision,
-    AI \& robotics. Skilled at writing good code and leveraging
-    cutting-edge developments to achieve project goals.
+    A Mechatronics engineer with research experience in computer 
+    vision, AI \& robotics. Skilled at writing maintainable code and 
+    leveraging cutting-edge developments to achieve project goals.
     \\ [4mm]
     % ----------------- Areas of experience -----------------
     \newsec{Areas of Experience}
@@ -100,6 +105,27 @@
         & {\bf Hobbies:} Reading, finance, cooking
     \end{tabular}
     \\ [4mm]
+    % ------------------------ Education ------------------------
+    \newsec{Education}
+    \expheader{M.S. by Research (CSE)}{\href{
+        https://robotics.iiit.ac.in/}{Robotics Research Center} (RRC), 
+        IIIT Hyderabad}{August 2021 to Present}{}
+    \begin{itemize}
+        \setlength{\itemsep}{0mm}
+        \item SLAM (Simultaneous Localization and Mapping) using 
+            cameras, VPR systems, local features matching, global
+            image descriptors.
+        \item RRC Summer School 2022 - Multi-View Geometry (\href{https://github.com/TheProjectsGuy/RRC22-Summer-School-MVG4}{GitHub})
+        \item Student SysAdmin (from May 2022 to Feb 2023)
+        \item First year {\bf GPA 10/10}
+    \end{itemize}
+    \expheader{B.Tech. in Mechatronics Engineering}{Manipal Institute 
+        of Technology}{July 2016 to July 2020}
+    \begin{itemize}
+        \setlength{\itemsep}{0mm}
+        \item Minor in Robotics
+        \item Gold medalist in the batch (with {\bf CGPA 9.88/10})
+    \end{itemize}
     % ----------------------- Experience -----------------------
     \newsec{Experience}
     \expheader{Consultant}{
@@ -143,25 +169,6 @@
         \item First experience with computer vision, artificial 
             intelligence, robotics (kinematics), and various software 
             frameworks.
-    \end{itemize}
-    % ------------------------ Education ------------------------
-    \newsec{Education}
-    \expheader{M.S. by Research (CSE)}{\href{
-        https://robotics.iiit.ac.in/}{Robotics Research Center} (RRC), 
-        IIIT Hyderabad}{2021 to Present}
-    \begin{itemize}
-        \setlength{\itemsep}{0mm}
-        \item SLAM (Simultaneous Localization and Mapping) using 
-            cameras, VPR systems, local features matching, global
-            image descriptors.
-        \item RRC Summer School 2022 - Multi-View Geometry (\href{https://github.com/TheProjectsGuy/RRC22-Summer-School-MVG4}{GitHub})
-        \item Student SysAdmin (from May 2022 to Feb 2023)
-    \end{itemize}
-    \expheader{B.Tech. in Mechatronics Engineering}{Manipal Institute 
-        of Technology}{2016 to 2020}
-    \begin{itemize}
-        \setlength{\itemsep}{0mm}
-        \item Minor in Robotics
     \end{itemize}
     % ------------------------ Publications ------------------------
     \newsec{Publications}
