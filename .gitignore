@@ -28,3 +28,6 @@
 *.bbl
 *.bcf
 *.blg
+
+# -- Presentations --
+.~lock.*
