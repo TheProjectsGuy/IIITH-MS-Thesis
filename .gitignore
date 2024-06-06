@@ -31,3 +31,6 @@
 
 # -- Presentations --
 .~lock.*
+
+# -- Sensitive --
+*.ignore*
