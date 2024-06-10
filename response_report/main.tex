@@ -1,5 +1,45 @@
 \documentclass{article}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{soul}
+\usepackage[a4paper, textwidth=6.25in]{geometry}
+
+% --------------------- Variables ---------------------
+\newcommand{\thesisTitle}
+        {Foundation Models for Visual Place Recognition}
+\newcommand{\myName}{Avneesh Mishra}
+
+\title{
+    {\LARGE Thesis Response Report} \\
+    {\Large\bfseries \thesisTitle}
+}
+\author{{\myName} \\
+    {\small 2021701032 - M.S. by Research, CSE - 
+        Robotics Research Center}
+}
+\date{\today}
 
 \begin{document}
-Template
+    \maketitle
+    This is a document highlighting the examiner reviews and revisions
+    for the thesis titled ``{\bf \thesisTitle}'' authored by \myName.
+    The examiner comments are mentioned (as is) followed by responses.
+    I thank the examiners for reviewing my thesis and giving useful
+    comments to improve it.
+
+    \noindent The examiners are abbreviated as \textbf{E1} and
+    \textbf{E2}, while their enumerated comments are addressed as
+    \textbf{C1}, \textbf{C2}, and so on. Mentions of modifications to
+    the thesis are \ul{underlined}.
+
+    \tableofcontents
+    \pagebreak
+
+    \section{Examiner Comments}
+    The comments given by the examiners for version 1 of the thesis.
+    \input{examiner_comments.tex}
+
+    \section{Responses}
+    Responses to the particular comments
+    \input{responses.tex}
 \end{document}

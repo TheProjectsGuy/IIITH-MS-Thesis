@@ -1,0 +1,246 @@
+% ---------------- Macros ----------------
+\newcommand{\ec}[2]{
+    \subsection{#1}
+    \begin{tcolorbox}[title=#1]
+        #2
+    \end{tcolorbox}
+}
+
+% ----------------------- Examiner 1 -----------------------
+
+\ec{E1.C1 - Facet and Layer Selection}{
+    Paragraph before 3.2.1.3, Process, you mention selecting facet and
+    layer based on inspection, but should rather be based on ablations
+    (Fig 3.4) right?
+}
+
+There could be two methods of choosing the facet and layer:
+qualitative and quantitative. The process mentioned in the end of
+Section 3.2.1.2: Choosing Layer and Facet, is a qualitative approach
+where we can visually select a working layer and facet (based on the
+disparity of attention maps). This is backed by quantitative ablations
+across all facets and layers for the used models. \ul{A note is added
+at the end of the paragraph to signify the same}.
+
+\ec{E1.C2 - Similarity Computation}{
+    I missed one analysis; given the aggregated features, do the
+    results change based on how the distances or similarities are
+    computed between query and db images? How is this done currently?
+}
+
+We use Cosine Distance of global descriptors to do the nearest
+neighbor retrieval (as mentioned in ``Mathematical Formulation''
+paragraph of the Section 1.2.3.1: Image Retrieval from Image
+Descriptors). Our implementation involves normalizing the global
+descriptors before further processing, therefore, using Euclidean
+distance should also give the same results. We use cosine for the ease
+of implementation (it is just a dot product for normalized vectors).
+
+\ul{A paragraph has been added just before the beginning of
+Section 3.3: Experimental Setup to highlight this in Chapter 3}.
+
+\ec{E1.C3 - ViT for CosPlace and AnyLoc}{
+    Table 3.8, and some other places, sometimes the comparison is
+    unfair. ViT-G is a huge model, comparing it with ViT-B CosPlace
+    and saying it's better would be expected right?
+}
+
+We agree that the ViT-G backbone for DINOv2 has more parameters
+compared to conventional models like ViT-B. However, particularly for
+Table 3.8: ``VPR Trained ViTs Vs. Self Supervised ViTs'', our aim is
+to show that the attention architecture (ViT) alone is not enough to
+yield great results. Using self-supervised learning methods for
+foundation models gives much better results. We see this with AnyLoc
+ViT-S (a much smaller model) and ViT-B (same architecture)
+outperforming CosPlace's ViT-B on all domains (other than Urban - for
+which CosPlace is better suited). Basically, DINO and DINOv2 learn
+better features; and this is not solely because they're ViTs. \ul{A
+note is added at the end of sub-caption of Table 3.8 to convey the
+same}.
+
+
+% ----------------------- Examiner 2 -----------------------
+\pagebreak
+
+
+\ec{E2.C1 - Text Continuity}{
+    The thesis is poorly written. The continuity in reading the text
+    is lacking.
+}
+
+The thesis is structured with the first two chapters providing
+foundational knowledge in Visual Place Recognition (VPR) and
+Foundation Models, respectively. This approach aims to ensure a smooth
+understanding for readers from diverse backgrounds who may not be
+familiar with both fields. While the initial chapters may seem
+distinct, they establish the necessary context for Chapter 3, which
+presents our work, AnyLoc, along with results and ablations. Chapter 4
+discusses the limitations and future directions.
+
+We understand that the initial separation might hinder the reading
+flow. We are open to suggestions on how to improve the transitions
+between chapters to enhance the overall continuity. We believe the
+revised thesis offers a clearer structure. However, we are open to
+incorporating minor modifications to further enhance the reading
+experience.
+
+
+\ec{E2.C2 - Problem Definition}{
+    The problem needs to be more clearly defined. What is the input?
+    What is the expected output? What is the metric used?
+}
+
+We aim to create a VPR system that works off-the-shelf on many
+deployment settings (without any additional training or fine-tuning).
+The initial input of this system is RGB database images forming a
+geo-stamped map. The system takes query images and matches them with
+relevant database images using global image descriptors. We propose
+using latent patch features from DINOv2 and using conventional
+aggregation techniques to create these global descriptors. We show
+that our method outperforms existing state-of-the-art on various
+domains using metrics like Recall@N (percentage of correct retrievals
+in the top-N retrieved images). The final output could be used for
+loop closures in SLAM or similar systems (detailed in Section 1.2.2:
+Localization and Mapping).
+
+The VPR problem using global descriptors is discussed in detail in
+Section 1.2.3: Visual Place Recognition and shown graphically in
+Figure 1.3: Image Retrieval Systems. \ul{A clear description of the
+VPR problem (and how we solve it) has been added under Section 3.3:
+``Experimental Setup''}. The Section 3.3.3: Evaluation has been
+renamed to Section 3.3.3: ``Evaluation Metric'' to highlight that it
+contains information about the metric we use (Recall@N).
+
+\begin{quote}
+    Recall@N (or $\textup{R@N}$) is defined as the percentage of
+    queries that have a correct retrieval in the top-N closest
+    retrieved database images.
+\end{quote}
+
+\ec{E2.C3 - Failings of the Method}{
+    The thesis claims to suggest that they have build a ``Universal 
+    VPR system''. Its important also to mention where the model fails.
+}
+
+Our proposed method has a few failures (described in more detail in
+Section 4.1: Limitations and Suggestions). The large size of our model
+prohibits light and cheap front-end deployment.
+
+Additionally, since DINO (or DINOv2) aren't trained specifically for
+VPR tasks, and since the VPR community has largely focused on outdoor
+deployments, we see that our method comes close (but doesn't surpass)
+the state-of-the-art in outdoor domains. However, we make up for this
+with huge gains in indoor, aerial, and un-structured domains.
+
+\ec{E2.C4 \& E2.C7 - Use of ``Foundation Model''}{
+    There need to be a clear description why the model could be called
+    a foundation model. What does it meant to be a foundation model
+    for IR?? The database of the IR is always going to be limited and
+    cannot contain all the possible images of the world? Foundation
+    models are supposed to work without any modifications on a wide
+    variety of scenarios (without even retraining). Its unclear in
+    what sense the term is being used.
+    \tcblower
+    I expect a very clearly spelt out definition/justification about
+    what is meant by a Foundation Model for IR and why your model
+    deserves that tag, in the thesis. This need to be laid properly in
+    a few pages with minimal jargon.
+}
+
+We propose using features from Foundation Models (DINO and DINOv2, to
+be precise) for the purpose of Visual Place Recognition. The community
+does not have a rigid definition of a ``Foundation Model'', however,
+we describe some unique features for Foundation Models in Chapter 2:
+Foundation Models. We also describe DINO and DINOv2 in detail through
+that chapter. DINO and DINOv2 are foundation models trained using
+self-supervised learning on large datasets. DINO and DINOv2 are
+foundation models; we use their latent features for VPR. Our results
+show that we obtain a universal VPR system that works reasonably well
+under various settings.
+
+Additionally, we included the following in the beginning of Chapter 3
+to highlight the features of a universal model for VPR.
+
+\begin{quote}
+    A generic out-of-the-box model will need to perform adequately
+    well under a large set of challenges, including cases where there
+    isn't enough data for training or when training on different
+    domains is complex. This chapter introduces AnyLoc which is the
+    first step towards a universal VPR system.
+\end{quote}
+
+We do not say that we are presenting a ``Foundation Model for IR'';
+instead, we are presenting a general-purpose (universal) VPR system
+that relies on latent patch features on a foundation model. We claim
+AnyLoc to be a significant step towards universal VPR systems and show
+that using DINOv2 features is a good first step in that direction.
+
+\begin{tcolorbox}
+    The database of the IR is always going to be limited and
+    cannot contain all the possible images of the world? Foundation
+    models are supposed to work without any modifications on a wide
+    variety of scenarios (without even retraining).
+\end{tcolorbox}
+
+In most cases, we observe that a representative sample is sufficient
+to impart good cluster centers (i.e. to build a good vocabulary),
+which in turn give more robust global descriptors. Interestingly, in
+Table 3.6: Vocabulary Analysis using AnyLoc-VLAD-DINOv2, we also
+address the question of using images outside the deployment setting.
+For example, using cluster centers obtained from unstructured datasets
+for testing in structured settings still gives competitive results.
+The same can be said for using vocabulary from structured domain for
+testing in an unstructured domain (like aerial images). We also
+demonstrate strong vocabulary transfer capabilities in the same domain
+(that is, we fit the cluster centers on a large dataset and test on a
+different dataset of the same domain) in Table 3.7: ``Vocabulary
+Transfer for AnyLoc-VLAD-DINOv2'' and show that we maintain
+state-of-the-art results even then.
+
+
+\ec{E2.C5 \& E2.C8 - SLAM Survey}{
+    Why is a detailed survey of SLAM needed when the focus of the
+    thesis is VPR or IR??
+    \tcblower
+    Also, if you are focusing of IR/VPR having a long survey on SLAM
+    in the thesis doesn't make sense.
+}
+
+VPR forms the backbone for loop closure in visual (RGB) SLAM. Since we
+want the section relevant to those coming from a robotics background,
+the survey on SLAM is divided into the following sections
+\begin{enumerate}
+    \item Conventional Systems: This is to highlight that older SLAM
+        systems did not have a visual loop closure element and relied
+        heavily on filtering methods.
+    \item Deep Learning in SLAM: Highlights a trend of using learned
+        features for SLAM. This is not just for loop closure but also
+        for map building, recalls, etc.
+    \item Other modalities: Highlights the emerging trend of using
+        more than just RGB cameras. However, using this coupled with
+        deep learning methods is still an active area of research.
+    \item Deployment systems: These are real-world front-to-end
+        off-the-shelf SLAM systems one can use.
+\end{enumerate}
+
+Each section is sorted in the ascending order of year of release. We
+believe that the thorough review in the above sections could help
+identify more gaps in the existing SLAM pipelines which could be aided
+by research in foundation models (and related fields).
+
+However, \ul{for the convenience of the examiner, we have greatly
+reduced the size of this survey while maintaining the sections}.
+
+\ec{E2.C6 - Units in Table}{
+    In table 3.8, 3.9 it is not mentioned what the units for the
+    numbers are or what metric is being talked about.
+}
+
+Apologies for omitting the units in Table 3.8 (VPR Trained ViTs Vs.
+Self Supervised ViTs) and Table 3.9 (AnyLoc Aggregation Methods). In
+Table 3.8, all values are R@1 values (percentages). In Table 3.9,
+columns 2, 3, 5 and 6 are R@1 values (percentages) and columns 4 and 7
+are integers (descriptor dimensionality). \ul{The sub-caption text of
+the tables has been updated to reflect this}. Thank you for pointing
+this out.
+
