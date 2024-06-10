@@ -975,7 +975,7 @@ and \texttt{layer 31} for \texttt{DINOv2 ViTT-G/14}.
     \small
         Analysis of ViTs trained for VPR (top rows) versus
         self-supervised ViTs (bottom rows). Best results are in 
-        \textbf{bold}.
+        \textbf{bold}. All numbers are Recall@1 percentages.
     \label{fig:anyloc_cosplace_vit}
 \end{table}
 
@@ -1021,7 +1021,9 @@ best performance using ViT-G AnyLoc-VLAD-DINOv2.
         DINO and DINOv2 features (same facet and layer as AnyLoc).
         Note that for DINOv2, through VLAD has high dimension, the PCA
         projected version has only 512 dimension. It is not included
-        here for fairness.
+        here for fairness. The numbers in \texttt{Dim} column are
+        integers (lower is better) and the numbers in other columns
+        are Recall@1 percentages (higher is better).
     \label{tab:anyloc_agg_ablation}
 \end{table}
 
