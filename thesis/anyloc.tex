@@ -298,11 +298,14 @@ points. As seen in \cref{fig:anyloc_facet_layer}, a point in the left
 database image is chosen and all patches (across all facets) are
 extracted from the query image (on the right) and matched. A map
 highlighting the similarity of each patch to the queried point is
-visualized across facets and layers. The most similar patch is 
+visualized across facets and layers. The most similar patch is
 highlighted in the query image. On inspecting the similarity maps, we
 can arrive at a decision on using a particular facet and layer. In the
 case of \cref{fig:anyloc_facet_layer}, we choose the \texttt{value}
-facet of the 31st layer (because the maps are most contrastive).
+facet of the 31st layer (because the maps are most contrastive). This
+choice is justified by layer and facet ablations in
+\cref{subsec:design-ablations} (and
+\cref{fig:anyloc_design_ablations}).
 
 
 \subsubsection{Choosing Aggregation Method}
@@ -897,6 +900,7 @@ images (purple), and road, buildings, and horizon in outdoor images
 experiment, we use $K = 8$ clusters.
 
 \subsection{Design Ablation}
+\label{subsec:design-ablations}
 
 \begin{figure}
     \centering
