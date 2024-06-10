@@ -231,23 +231,23 @@ the environment while estimating pose. VO systems are prone to drift,
 whereas SLAM systems correct drift through loop closures formed by the
 visual place recognition module.
 
-
 \subsubsection{Conventional SLAM Systems}
+% TODO: Uncomment SLAM algorithms for full survey in the final release
 
 Some conventional SLAM systems are described hereon
 
-\paragraph{MonoSLAM (2007) \cite{Davison2007MonoSLAMRS}} uses a known
-target for initialization. The system's state vector is updated by
-using a constant velocity model. Camera motion and environment
-structure (map) are estimated using an Extended Kalman Filter (EKF).
-The algorithm does not employ global optimization or loop closure
-techniques.
+% \paragraph{MonoSLAM (2007) \cite{Davison2007MonoSLAMRS}} uses a known
+% target for initialization. The system's state vector is updated by
+% using a constant velocity model. Camera motion and environment
+% structure (map) are estimated using an Extended Kalman Filter (EKF).
+% The algorithm does not employ global optimization or loop closure
+% techniques.
 
-\paragraph{PTAM (2007) \cite{Klein2007ParallelTA}} (Parallel Tracking
-and Mapping) has two threads: tracking and mapping. The tracking
-thread updates camera poses in the frames through feature search
-(matching). The mapping thread performs data association, integration
-of new frames, local and global bundle adjustment.
+% \paragraph{PTAM (2007) \cite{Klein2007ParallelTA}} (Parallel Tracking
+% and Mapping) has two threads: tracking and mapping. The tracking
+% thread updates camera poses in the frames through feature search
+% (matching). The mapping thread performs data association, integration
+% of new frames, local and global bundle adjustment.
 
 \paragraph{FAB-MAP (2008) \cite{Cummins2008FABMAPPL}} (FAst Binary
 appearance-based Mapping) builds a map of visually similar locations
@@ -256,27 +256,27 @@ place recognition are built using a Bag-of-Words (BoW) representation
 over image keypoint features. It incrementally builds and updates map
 in a probabilistic framework.
 
-\paragraph{DTAM (2011) \cite{Newcombe2011DTAMDT}} (Dense Tracking and
-Mapping) has two parts (like PTAM but dense). The dense tracking
-module estimates motion of camera by aligning a virtual camera in the
-recorded map. The dense mapping module estimates the (inverse) depth
-values of images by jointly minimizing the photometric error.
+% \paragraph{DTAM (2011) \cite{Newcombe2011DTAMDT}} (Dense Tracking and
+% Mapping) has two parts (like PTAM but dense). The dense tracking
+% module estimates motion of camera by aligning a virtual camera in the
+% recorded map. The dense mapping module estimates the (inverse) depth
+% values of images by jointly minimizing the photometric error.
 
 \paragraph{FAB-MAP 2.0 (2011) \cite{Cummins2011AppearanceonlySA}}
 builds on FAB-MAP with a sparse approximation to the model, thus
 allowing deployment on a much larger scale.
 
-\paragraph{SVO (2014) \cite{Forster2014SVOFS}} (Semi-Direct Visual
-Odometry) minimizes the photometric error and performs feature
-alignment for motion estimation. It has a probabilistic depth filter
-for mapping.
+% \paragraph{SVO (2014) \cite{Forster2014SVOFS}} (Semi-Direct Visual
+% Odometry) minimizes the photometric error and performs feature
+% alignment for motion estimation. It has a probabilistic depth filter
+% for mapping.
 
-\paragraph{LSD-SLAM (2014) \cite{Engel2014LSDSLAMLD}} (Large-Scale
-Direct monocular SLAM) minimizes the photometric error for pose
-estimation, it then estimates depth map (through addition in a new
-keyframe or by refining), finally it uses a pose-graph optimization
-algorithm to smooth the map. It also employs loop closures through
-image alignment and constraint search.
+% \paragraph{LSD-SLAM (2014) \cite{Engel2014LSDSLAMLD}} (Large-Scale
+% Direct monocular SLAM) minimizes the photometric error for pose
+% estimation, it then estimates depth map (through addition in a new
+% keyframe or by refining), finally it uses a pose-graph optimization
+% algorithm to smooth the map. It also employs loop closures through
+% image alignment and constraint search.
 
 \paragraph{ORB-SLAM (2015) \cite{MurArtal2015ORBSLAMAV}} is one of the
 first lifelong SLAM algorithms that defined the methodology of modern
@@ -309,6 +309,7 @@ for place recognition, but with modifications for verification in
 active map and checks for gravity direction.
 
 \subsubsection{Deep Learning in SLAM}
+% TODO: Uncomment SLAM algorithms for full survey in the final release
 
 Review of Deep Learning in SLAM
 
@@ -317,17 +318,17 @@ maps predicted by a CNN with those obtained by direct monocular SLAM.
 It also fuses semantic segmentation maps for coherent scene
 reconstructions.
 
-\paragraph{Neural SLAM (2017) \cite{Zhang2017NeuralS}} integrates deep
-reinforcement learning and differentiable SLAM modules for exploration
-tasks. It uses a neural turing machine (NTM) \cite{Graves2014NeuralTM}
-for external storage (which stores an implicit map representation). It
-does not use graph optimization for the map, but instead uses weights
-of the NTM. It uses a search in this space (through a convolution
-kernel) for localization.
+% \paragraph{Neural SLAM (2017) \cite{Zhang2017NeuralS}} integrates deep
+% reinforcement learning and differentiable SLAM modules for exploration
+% tasks. It uses a neural turing machine (NTM) \cite{Graves2014NeuralTM}
+% for external storage (which stores an implicit map representation). It
+% does not use graph optimization for the map, but instead uses weights
+% of the NTM. It uses a search in this space (through a convolution
+% kernel) for localization.
 
-\paragraph{CNN-SVO (2018) \cite{Loo2018CNNSVOIT}} uses depth
-predictions as prior to reduce the uncertainty for identifying
-corresponding features as the camera moves.
+% \paragraph{CNN-SVO (2018) \cite{Loo2018CNNSVOIT}} uses depth
+% predictions as prior to reduce the uncertainty for identifying
+% corresponding features as the camera moves.
 
 \paragraph{DRIOD-SLAM (2021) \cite{Teed2021DROIDSLAMDV}}
 (Differentiable Recurrent Optimization-Inspired Design) applies
@@ -336,17 +337,18 @@ iterative updates to optical flow (inspired by RAFT
 Adjustment (DBA) layer to update camera poses and dense per-pixel
 depth.
 
-\paragraph{$\triangledown$SLAM (2020) \cite{Jatavallabhula2019SLAMDS}}
-(gradSLAM) makes dense SLAM differentiable by proposing differentiable
-versions of the operations. This makes SLAM end-to-end differentiable
-(from 3D objects in the map to the pixel observations in the sensor).
-Specifically, they propose differentiable LM solver, map construction,
-fusion, and ray backprojection. The authors demonstrate fully
-differentiable versions of KinectFusion
-\cite{Newcombe2011KinectFusionRD} and PointFusion
-\cite{Keller2013RealTime3R}.
+% \paragraph{$\triangledown$SLAM (2020) \cite{Jatavallabhula2019SLAMDS}}
+% (gradSLAM) makes dense SLAM differentiable by proposing differentiable
+% versions of the operations. This makes SLAM end-to-end differentiable
+% (from 3D objects in the map to the pixel observations in the sensor).
+% Specifically, they propose differentiable LM solver, map construction,
+% fusion, and ray backprojection. The authors demonstrate fully
+% differentiable versions of KinectFusion
+% \cite{Newcombe2011KinectFusionRD} and PointFusion
+% \cite{Keller2013RealTime3R}.
 
 \subsubsection{SLAM Beyond RGB Cameras}
+% TODO: Uncomment SLAM algorithms for full survey in the final release
 
 This incorporates data from other sensor modalities like depth. It
 also covers modern techniques like implicit representation for
@@ -376,19 +378,19 @@ pose estimation), mesher (to build local 3D meshes), semantics (for
 global 3D meshes), and a pose graph and mesh optimization (PGMO) 
 library (that enforces loop closures).
 
-\paragraph{Kimera-Multi (2021) \cite{Tian2021KimeraMultiRD}} extends
-Kimera to a multi-robot setting where agents can perform inter and
-intra-robot loop closures and can create the map in a distributed 
-(but networked) manner.
+% \paragraph{Kimera-Multi (2021) \cite{Tian2021KimeraMultiRD}} extends
+% Kimera to a multi-robot setting where agents can perform inter and
+% intra-robot loop closures and can create the map in a distributed 
+% (but networked) manner.
 
-\paragraph{iMAP (2021) \cite{Sucar2021iMAPIM}} uses an implicit neural
-scene representation for mapping (with data captured using a hand-held
-RGB-D camera). The scene reconstruction has a small memory footprint.
-It jointly optimizes over the camera poses for keyframes and the
-implicit scene network parameters. It yields more complete
-reconstructions as they're renderings produced by querying the
-network, in a process similar to Neural Radiance Fields (NeRF)
-\cite{Mildenhall2020NeRF}.
+% \paragraph{iMAP (2021) \cite{Sucar2021iMAPIM}} uses an implicit neural
+% scene representation for mapping (with data captured using a hand-held
+% RGB-D camera). The scene reconstruction has a small memory footprint.
+% It jointly optimizes over the camera poses for keyframes and the
+% implicit scene network parameters. It yields more complete
+% reconstructions as they're renderings produced by querying the
+% network, in a process similar to Neural Radiance Fields (NeRF)
+% \cite{Mildenhall2020NeRF}.
 
 \paragraph{NICE-SLAM (2021) \cite{Zhu2021NICESLAMNI}} uses a
 hierarchical implicit scene representation that incorporates
@@ -403,11 +405,11 @@ NICE-SLAM, adding losses for scene warping, optical flow, surface
 normals and Eikonal/SDF output (for accurate surfaces in the map). It
 also operates on a continuous RGB stream (not needing depth).
 
-\paragraph{RO-SLAM (2023) \cite{Han2023ROMAPRM}} uses monocular RGB
-inputs to create object representations based on neural radiance
-fields. These are then coupled with a light-weight object SLAM
-(ORB-SLAM2). It trains multiple NeRF networks in parallel (for the
-objects in the scene).
+% \paragraph{RO-SLAM (2023) \cite{Han2023ROMAPRM}} uses monocular RGB
+% inputs to create object representations based on neural radiance
+% fields. These are then coupled with a light-weight object SLAM
+% (ORB-SLAM2). It trains multiple NeRF networks in parallel (for the
+% objects in the scene).
 
 \paragraph{GS-SLAM (2023) \cite{Yan2023GSSLAMDV}} uses Gaussian
 Splatting \cite{Kerbl20233DGS} as the scene representation. It
@@ -417,25 +419,25 @@ optimizes camera pose (for tracking) by a coarse-to-fine method. It
 uses bundle adjustment to jointly optimize the camera poses and the
 3D Gaussian scene representation.
 
-\paragraph{Gaussian-SLAM (2023) \cite{Yugay2023GaussianSLAMPD}} 
-performs optimization over sub-maps instead of the entire Gaussian
-point cloud. This gives better results for novel view synthesis, makes
-the computation feasible, and helps avoiding catastrophic forgetting.
-It uses structured similarity metric (SSIM) for color supervision 
-(along with the usual L1 loss).
+% \paragraph{Gaussian-SLAM (2023) \cite{Yugay2023GaussianSLAMPD}} 
+% performs optimization over sub-maps instead of the entire Gaussian
+% point cloud. This gives better results for novel view synthesis, makes
+% the computation feasible, and helps avoiding catastrophic forgetting.
+% It uses structured similarity metric (SSIM) for color supervision 
+% (along with the usual L1 loss).
 
-\paragraph{SplaTAM (2023) \cite{Keetha2023SplaTAMST}} also uses 3D
-Gaussian Splatting for the scene representation. It estimates the
-camera pose using silhouette-guided differentiable rendering. It then
-densifies the map by adding new Gaussians to the map. It the updates
-the map using RGB and depth errors.
+% \paragraph{SplaTAM (2023) \cite{Keetha2023SplaTAMST}} also uses 3D
+% Gaussian Splatting for the scene representation. It estimates the
+% camera pose using silhouette-guided differentiable rendering. It then
+% densifies the map by adding new Gaussians to the map. It the updates
+% the map using RGB and depth errors.
 
-\paragraph{Kimera2 (2024) \cite{Abate2024Kimera2RA}} improves Kimera
-by modifying the VIO pipeline to support multiple modalities (RGB-D,
-stereo, monocular, and wheel odometry) and upgrades the pose graph
-optimization (PGO) backends with Graduated Non-Convexity (GNC)
-\cite{Yang2019GraduatedNF} for robustness against spurious loop
-closures.
+% \paragraph{Kimera2 (2024) \cite{Abate2024Kimera2RA}} improves Kimera
+% by modifying the VIO pipeline to support multiple modalities (RGB-D,
+% stereo, monocular, and wheel odometry) and upgrades the pose graph
+% optimization (PGO) backends with Graduated Non-Convexity (GNC)
+% \cite{Yang2019GraduatedNF} for robustness against spurious loop
+% closures.
 
 \paragraph{Khronos (2024) \cite{Schmid2024KhronosAU}} integrates a
 spatio-temporal approach that monitors short and long-term dynamics
@@ -446,6 +448,7 @@ then applies a novel factorization approach to track spatio-temporal
 fragments (for short-term and long-term dynamic objects in the scene).
 
 \subsubsection{Deployment}
+% TODO: Uncomment SLAM algorithms for full survey in the final release
 
 The nature of SLAM entails multiple processes running in parallel.
 Robot Operating System (ROS) \cite{Quigley2009ROSAO} is a backbone
@@ -465,10 +468,10 @@ However, it fails in large spaces due to poor loop closures at scale.
 \paragraph{KartoSLAM (2010) \cite{Konolige2010EfficientSP}} uses
 sparse bundle adjustment and a pose-graph based method.
 
-\paragraph{HectorSLAM (2011) \cite{Kohlbrecher2011AFA}} uses a 3D
-navigation filter based on EKF state estimation. It primarily uses
-LiDAR scan matching for generating 2D pose estimates and does not
-rely on odometry or loop closures, leading to high drift over time.
+% \paragraph{HectorSLAM (2011) \cite{Kohlbrecher2011AFA}} uses a 3D
+% navigation filter based on EKF state estimation. It primarily uses
+% LiDAR scan matching for generating 2D pose estimates and does not
+% rely on odometry or loop closures, leading to high drift over time.
 
 \paragraph{Cartographer (2016) \cite{Hess2016RealtimeLC}} It combines
 a scan-to-submap matching method with loop closure optimization using
