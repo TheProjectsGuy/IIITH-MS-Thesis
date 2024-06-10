@@ -206,6 +206,7 @@ methods (see center of \cref{fig:anyloc} for comparison with MixVPR).
 The process and steps for AnyLoc are described below
 
 \subsection{Constructing AnyLoc Pipeline}
+\label{subsec:anyloc-pipeline}
 
 \subsubsection{Choice of Foundation Model}
 
@@ -400,6 +401,22 @@ query's nearest neighbor lookup can be done online.
 
 \section{Experimental Setup}
 
+In Visual Place Recognition (VPR), a system typically relies on a
+collection of images stored in a database (usually captured
+beforehand). The goal is to find matching images in this database for
+a given query image (usually provided at runtime). This essentially
+translates to solving an image retrieval problem. VPR systems achieve
+this by analyzing smaller image regions (local features) and then
+combining these analyses (feature aggregation) to create a
+comprehensive description (global descriptor) for the entire image.
+
+Our approach aims to create a general-purpose solution for VPR (image
+retrieval) by leveraging latent features extracted from DINO and
+DINOv2 models (as described in \cref{subsec:anyloc-pipeline}). We
+employ well-established feature aggregation techniques to combine
+information from local patch descriptors and generate global image
+descriptors.
+
 \subsection{Datasets}
 
 \begin{table}
@@ -507,7 +524,7 @@ query images (which are fed online). We project the dimensionality
 from $49152$ to $512$ in \emph{AnyLoc-VLAD-DINO-PCA} and
 \emph{AnyLoc-VLAD-DINOv2-PCA} methods.
 
-\subsection{Evaluation}
+\subsection{Evaluation Metric}
 
 We use the widely used \texttt{Recall@N} metric to evaluate image
 retrieval (VPR) performance on each dataset. Recall@N (or
