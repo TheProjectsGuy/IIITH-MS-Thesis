@@ -389,6 +389,12 @@ define the following types of vocabulary
         use all the datasets captured in the outdoor setting.
 \end{itemize}
 
+After getting global descriptors (using aggregation techniques), we
+store the descriptors from database images into a local cache and 
+run similarity search for the descriptors of query images using Cosine
+similarity. Note that the database cache is built offline whereas the
+query's nearest neighbor lookup can be done online. 
+
 \section{Experimental Setup}
 
 \subsection{Datasets}
