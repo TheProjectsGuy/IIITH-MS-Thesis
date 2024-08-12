@@ -12,7 +12,7 @@ Also see: [IIIT-H blog](https://blogs.iiit.ac.in/monthly_news/avneesh-mishra/)
 
 | S. No. | Directory (Item) | Description |
 | :----- | :--------------- | :---------- |
-| 1 | [thesis](./thesis) | Main thesis document in a LaTeX project |
+| 1 | [thesis](./thesis) | Main thesis document in a LaTeX project. The PDF is [here](./thesis/main.pdf). |
 | 2 | [thesis_synopsis](./thesis_synopsis) | Thesis synopsis (abstract and brief) |
 | 3 | [publication_reviews](./publication_reviews) | Reviews for the paper (that is the basis of the thesis) |
 | 4 | [thesis_evaluation_request](./thesis_evaluation_request) | Evaluation request for the IIITH PG Cell |
