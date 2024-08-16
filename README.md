@@ -20,3 +20,5 @@ Also see: [IIIT-H blog](https://blogs.iiit.ac.in/monthly_news/avneesh-mishra/)
 | 6 | [public_presentation](./public_presentation) | Public presentation slides . Presented on 7th May 2024 at 3 PM in H-101. |
 | 7 | [response_report](./response_report) | Response for the thesis evaluation committee |
 | 8 | [thesis_defense](./thesis_defense) | Thesis defense presentation |
+
+You can find the LaTeX template on [the template tag](https://github.com/TheProjectsGuy/IIITH-MS-Thesis/releases/tag/template)
